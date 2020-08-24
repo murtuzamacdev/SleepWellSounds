@@ -32,75 +32,31 @@ const App: () => React$Node = () => {
     let _sounds = [];
     for (let key in SOUNDS) {
       SOUNDS[key].player = null;
-      SOUNDS[key].playerVal = false;
       _sounds.push(SOUNDS[key])
     }
     setSounds(_sounds);
-    console.log('_sounds :>> ', _sounds);
   }, []);
 
-  useEffect(() => {
-    console.log('sounds updatds', sounds)
-  }, [sounds]);
-
   const onTap = (selectedSound) => {
-
-    // console.log('selectedSound :>> ', selectedSound);
-    // console.log('sounds :>> ', sounds);
-    // let selectedSoundIndex = sounds.findIndex((sound) => sound.id === selectedSound.id);
-    // // let _sounds = [...sounds];
-    // sounds[selectedSoundIndex].playerVal = !sounds[selectedSoundIndex].playerVal;
-    // setSounds([...sounds]);
-    // setMovies(prevMovies => ([...prevMovies, ...result]));
-      
-
-    if (selectedSound.player) {
+    if (selectedSound.player) { // If already playing
       selectedSound.player.stop();
       let selectedSoundIndex = sounds.findIndex((sound) => sound.id === selectedSound.id);
       let _sounds = sounds;
       _sounds[selectedSoundIndex].player = null;
-      _sounds[selectedSoundIndex].playerVal = false;
       setSounds([...sounds]);
-    } else {
+    } else { // if not already playing, 
       selectedSound.player = new Player(`${selectedSound.fileName}`, {
-        autoDestroy: false
+        autoDestroy: false,
+        continuesToPlayInBackground: true
       });
       selectedSound.player.looping = true;
       selectedSound.player.play();
       let selectedSoundIndex = sounds.findIndex((sound) => sound.id === selectedSound.id);
       let _sounds = sounds;
       _sounds[selectedSoundIndex].player = selectedSound.player;
-      _sounds[selectedSoundIndex].playerVal = true;
       setSounds([...sounds]);
     }
-    // setTimeout(() => {
-    //   console.log('sounds :>> ', sounds);
-    // }, 3000);
   }
-
-  // const onTap = (selectedSound) => {
-  //   let selectedPlayerIndex = players.findIndex((player) => player.id === selectedSound.id);
-  //   if (selectedPlayerIndex !== -1) { // if the object is present in array, then stop and remove from array
-  //     players[selectedPlayerIndex].playerObj.stop();
-  //     let _players = players;
-  //     _players.splice(selectedPlayerIndex, 1);
-  //     setPlayer(_players);
-  //   } else { // if object is not present in the array, then play
-  //     let _players = players;
-  //     let _player = new Player(`${selectedSound.fileName}`, {
-  //       autoDestroy: false
-  //     });
-  //     _player.looping = true;
-  //     _player.play();
-  //     _players.push({
-  //       id: selectedSound.id,
-  //       playerObj: _player
-  //     })
-  //     setPlayer(_players);
-  //   }
-
-  //   console.log('_players :>> ', players);
-  // }
 
   const onVolumeChange = (soundPlayerId, volume) => {
     let selectedPlayerIndex = players.findIndex((player) => player.id === soundPlayerId);
@@ -118,7 +74,7 @@ const App: () => React$Node = () => {
               style={styles.controlToggler}
             >
               <Text style={styles.controlText}>{sound.name}</Text>
-              {sound.player  && <Slider
+              {sound.player && <Slider
                 style={{ width: 90, height: 40 }}
                 minimumValue={0}
                 maximumValue={1}
@@ -127,7 +83,6 @@ const App: () => React$Node = () => {
                 onValueChange={(volume) => { onVolumeChange(sound.id, volume) }}
               />
               }
-              {/* {showSlider(sound)} */}
             </View>
           </TouchableHighlight>
         })}
