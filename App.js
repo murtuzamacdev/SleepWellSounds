@@ -23,15 +23,17 @@ import {
 } from '@react-native-community/audio-toolkit';
 import Slider from '@react-native-community/slider';
 import { SOUNDS } from './src/common/constants';
+import MusicControl from 'react-native-music-control';
 
 const App: () => React$Node = () => {
-  const [players, setPlayers] = useState([]);
   const [sounds, setSounds] = useState([])
+  const [initializeMusicControl, setInitializeMusicControl] = useState(false)
 
   useEffect(() => {
     let _sounds = [];
     for (let key in SOUNDS) {
       SOUNDS[key].player = null;
+      SOUNDS[key].volume = 1;
       _sounds.push(SOUNDS[key])
     }
     setSounds(_sounds);
@@ -44,6 +46,19 @@ const App: () => React$Node = () => {
       let _sounds = sounds;
       _sounds[selectedSoundIndex].player = null;
       setSounds([...sounds]);
+
+      let isAnySoundPlaying = sounds.find((sound) => {
+        if (sound.player && sound.player.isPlaying) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+
+      if (isAnySoundPlaying === undefined) {
+        MusicControl.resetNowPlaying();
+      }
+
     } else { // if not already playing, 
       selectedSound.player = new Player(`${selectedSound.fileName}`, {
         autoDestroy: false,
@@ -55,12 +70,61 @@ const App: () => React$Node = () => {
       let _sounds = sounds;
       _sounds[selectedSoundIndex].player = selectedSound.player;
       setSounds([...sounds]);
+
+      sounds.forEach((sound) => {
+        if (sound.player && sound.player.isPaused) {
+          sound.player.play()
+        }
+      })
+
+      if (initializeMusicControl === false) {
+        initMusicControlEvents()
+        setInitializeMusicControl(true)
+      }
+
+      MusicControl.setNowPlaying({
+        title: 'Sleep Well Sounds',
+        artist: 'Playing',
+      })
+
+      MusicControl.updatePlayback({
+        state: MusicControl.STATE_PLAYING
+      })
     }
   }
 
   const onVolumeChange = (soundPlayerId, volume) => {
-    let selectedPlayerIndex = players.findIndex((player) => player.id === soundPlayerId);
-    players[selectedPlayerIndex].playerObj.volume = volume;
+    let selectedSoundIndex = sounds.findIndex((sound) => sound.id === soundPlayerId);
+    sounds[selectedSoundIndex].player.volume = volume;
+    let _sounds = sounds;
+    _sounds[selectedSoundIndex].volume = volume;
+    setSounds([...sounds]);
+  }
+
+  const initMusicControlEvents = () => {
+    MusicControl.enableControl('play', true)
+    MusicControl.enableControl('pause', true)
+    MusicControl.enableBackgroundMode(false);
+    MusicControl.enableControl('closeNotification', true, { when: 'always' });
+
+    MusicControl.on('play', (e) => {
+      MusicControl.updatePlayback({
+        state: MusicControl.STATE_PLAYING
+      })
+      sounds.forEach((sound) => {
+        sound.player && sound.player.play();
+      })
+    })
+
+    // On Pause
+    MusicControl.on('pause', () => {
+      MusicControl.updatePlayback({
+        state: MusicControl.STATE_PAUSED
+      })
+      sounds.forEach((sound) => {
+        sound.player && sound.player.pause();
+      })
+    })
   }
 
   return (
@@ -76,6 +140,7 @@ const App: () => React$Node = () => {
               <Text style={styles.controlText}>{sound.name}</Text>
               {sound.player && <Slider
                 style={{ width: 90, height: 40 }}
+                value={sound.volume}
                 minimumValue={0}
                 maximumValue={1}
                 minimumTrackTintColor="lightgrey"
