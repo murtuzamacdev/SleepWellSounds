@@ -31,3 +31,5 @@ target 'SleepWellSounds-tvOS' do
     # Pods for testing
   end
 end
+
+pod 'Google-Mobile-Ads-SDK'

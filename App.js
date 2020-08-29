@@ -24,6 +24,7 @@ import {
 import Slider from '@react-native-community/slider';
 import { SOUNDS } from './src/common/constants';
 import MusicControl from 'react-native-music-control';
+import { AdMobBanner, AdMobInterstitial } from 'react-native-admob';
 
 const App: () => React$Node = () => {
   const [sounds, setSounds] = useState([])
@@ -37,6 +38,11 @@ const App: () => React$Node = () => {
       _sounds.push(SOUNDS[key])
     }
     setSounds(_sounds);
+
+    // Show Interstitial Ad
+    // AdMobInterstitial.setAdUnitID('ca-app-pub-7653964150164042/1289478516');
+    // AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+    // AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
   }, []);
 
   const onTap = (selectedSound) => {
@@ -127,6 +133,10 @@ const App: () => React$Node = () => {
     })
   }
 
+  const onFailToRecieveAd = (error) => {
+    console.log('admob error :>> ', error);
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -151,6 +161,12 @@ const App: () => React$Node = () => {
             </View>
           </TouchableHighlight>
         })}
+        <AdMobBanner
+          adSize="smartBannerPortrait"
+          adUnitID="ca-app-pub-7653964150164042/7040498642"
+          testDeviceID="CF583E54-34C6-453C-80FC-493D2468A51E"
+          didFailToReceiveAdWithError={onFailToRecieveAd}
+        />
       </SafeAreaView>
     </>
   );

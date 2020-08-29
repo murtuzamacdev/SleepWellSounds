@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>GADApplicationIdentifier</key>
+ 	<string>ca-app-pub-7653964150164042~6609253805</string>
 	<key>UIBackgroundModes</key>
 	<array> <string>audio</string> </array>
 	<key>CFBundleDisplayName</key>
