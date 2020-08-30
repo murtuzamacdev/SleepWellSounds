@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,30 +14,30 @@ import {
   View,
   Text,
   StatusBar,
-  TouchableHighlight
+  TouchableHighlight,
+  FlatList
 } from 'react-native';
-import {
-  Player,
-  Recorder,
-  MediaStates
-} from '@react-native-community/audio-toolkit';
 import Slider from '@react-native-community/slider';
 import { SOUNDS } from './src/common/constants';
 import MusicControl from 'react-native-music-control';
 import { AdMobBanner, AdMobInterstitial } from 'react-native-admob';
+import { SoundContext, SoundContextProvider } from './src/context/sound.context'
 
 const App: () => React$Node = () => {
-  const [sounds, setSounds] = useState([])
+
+  return (
+    <SoundContextProvider>
+      <AppWrapper />
+    </SoundContextProvider>
+  );
+};
+
+const AppWrapper = () => {
+  const soundContext = useContext(SoundContext);
   const [initializeMusicControl, setInitializeMusicControl] = useState(false)
 
   useEffect(() => {
-    let _sounds = [];
-    for (let key in SOUNDS) {
-      SOUNDS[key].player = null;
-      SOUNDS[key].volume = 1;
-      _sounds.push(SOUNDS[key])
-    }
-    setSounds(_sounds);
+    soundContext.initializeSounds();
 
     // Show Interstitial Ad
     // AdMobInterstitial.setAdUnitID('ca-app-pub-7653964150164042/1289478516');
@@ -47,136 +47,79 @@ const App: () => React$Node = () => {
 
   const onTap = (selectedSound) => {
     if (selectedSound.player) { // If already playing
-      selectedSound.player.stop();
-      let selectedSoundIndex = sounds.findIndex((sound) => sound.id === selectedSound.id);
-      let _sounds = sounds;
-      _sounds[selectedSoundIndex].player = null;
-      setSounds([...sounds]);
-
-      let isAnySoundPlaying = sounds.find((sound) => {
-        if (sound.player && sound.player.isPlaying) {
-          return true;
-        } else {
-          return false;
-        }
-      })
-
-      if (isAnySoundPlaying === undefined) {
-        MusicControl.resetNowPlaying();
-      }
-
+      soundContext.removeSound(selectedSound);
     } else { // if not already playing, 
-      selectedSound.player = new Player(`${selectedSound.fileName}`, {
-        autoDestroy: false,
-        continuesToPlayInBackground: true
-      });
-      selectedSound.player.looping = true;
-      selectedSound.player.play();
-      let selectedSoundIndex = sounds.findIndex((sound) => sound.id === selectedSound.id);
-      let _sounds = sounds;
-      _sounds[selectedSoundIndex].player = selectedSound.player;
-      setSounds([...sounds]);
+      let isAllowed = soundContext.checkSoundMaxLimit();
+      if (isAllowed) {
+        soundContext.addSound(selectedSound);
 
-      sounds.forEach((sound) => {
-        if (sound.player && sound.player.isPaused) {
-          sound.player.play()
+        if (initializeMusicControl === false) {
+          soundContext.initMusicControlEvents()
+          setInitializeMusicControl(true)
         }
-      })
 
-      if (initializeMusicControl === false) {
-        initMusicControlEvents()
-        setInitializeMusicControl(true)
+        MusicControl.setNowPlaying({
+          title: 'Sleep Well Sounds',
+          artist: 'Playing',
+        })
+
+        MusicControl.updatePlayback({
+          state: MusicControl.STATE_PLAYING
+        })
+      } else {
+        alert('Max limit reached.')
       }
-
-      MusicControl.setNowPlaying({
-        title: 'Sleep Well Sounds',
-        artist: 'Playing',
-      })
-
-      MusicControl.updatePlayback({
-        state: MusicControl.STATE_PLAYING
-      })
     }
-  }
-
-  const onVolumeChange = (soundPlayerId, volume) => {
-    let selectedSoundIndex = sounds.findIndex((sound) => sound.id === soundPlayerId);
-    sounds[selectedSoundIndex].player.volume = volume;
-    let _sounds = sounds;
-    _sounds[selectedSoundIndex].volume = volume;
-    setSounds([...sounds]);
-  }
-
-  const initMusicControlEvents = () => {
-    MusicControl.enableControl('play', true)
-    MusicControl.enableControl('pause', true)
-    MusicControl.enableBackgroundMode(false);
-    MusicControl.enableControl('closeNotification', true, { when: 'always' });
-
-    MusicControl.on('play', (e) => {
-      MusicControl.updatePlayback({
-        state: MusicControl.STATE_PLAYING
-      })
-      sounds.forEach((sound) => {
-        sound.player && sound.player.play();
-      })
-    })
-
-    // On Pause
-    MusicControl.on('pause', () => {
-      MusicControl.updatePlayback({
-        state: MusicControl.STATE_PAUSED
-      })
-      sounds.forEach((sound) => {
-        sound.player && sound.player.pause();
-      })
-    })
   }
 
   const onFailToRecieveAd = (error) => {
     console.log('admob error :>> ', error);
   }
 
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        {sounds.map((sound) => {
-          return <TouchableHighlight onPress={() => { onTap(sound) }} key={sound.id} style={styles.controlCtnr}>
-
+  return (<>
+    <StatusBar barStyle="dark-content" />
+    <SafeAreaView>
+      <ScrollView>
+        <FlatList
+          data={soundContext.state.sounds}
+          numColumns={3}
+          keyExtractor={(item, index) => item.id}
+          renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={styles.controlCtnr}>
             <View
               style={styles.controlToggler}
             >
-              <Text style={styles.controlText}>{sound.name}</Text>
-              {sound.player && <Slider
+              <Text style={styles.controlText}>{item.name}</Text>
+              {item.player && <Slider
                 style={{ width: 90, height: 40 }}
-                value={sound.volume}
+                value={0.5}
                 minimumValue={0}
                 maximumValue={1}
                 minimumTrackTintColor="lightgrey"
                 maximumTrackTintColor="#000000"
-                onValueChange={(volume) => { onVolumeChange(sound.id, volume) }}
+                onValueChange={(volume) => { soundContext.onVolumeChange(item.id, volume) }}
               />
               }
             </View>
-          </TouchableHighlight>
-        })}
+          </TouchableHighlight>}
+        />
+
         <AdMobBanner
           adSize="smartBannerPortrait"
           adUnitID="ca-app-pub-7653964150164042/7040498642"
           testDeviceID="CF583E54-34C6-453C-80FC-493D2468A51E"
           didFailToReceiveAdWithError={onFailToRecieveAd}
         />
-      </SafeAreaView>
-    </>
-  );
-};
+      </ScrollView>
+    </SafeAreaView>
+  </>);
+}
+
 
 const styles = StyleSheet.create({
   controlCtnr: {
     borderWidth: 1,
     height: 100,
-    width: 130,
+    flex: 1,
     margin: 10,
     flexDirection: 'column',
     justifyContent: 'center',
