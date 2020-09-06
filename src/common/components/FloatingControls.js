@@ -51,9 +51,15 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'space-evenly',
         borderWidth: 1,
+        borderColor: 'green',
+        borderRadius: 20,
         position: 'absolute',
         bottom: 100,
-        width: '100%'
+        width: '100%',
+        paddingLeft: 50,
+        paddingRight: 50,
+        paddingTop: 20,
+        paddingBottom: 20
     }
 });
 
