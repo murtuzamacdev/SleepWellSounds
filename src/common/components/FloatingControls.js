@@ -12,9 +12,20 @@ import { SoundContext } from '../../context/sound.context';
 
 const FloatingControls = (props) => {
     const soundContext = useContext(SoundContext);
+    const [playStatus, setPlayStatus] = useState(true);
 
     const togglePlaying = () => {
-        
+        if (playStatus) { // Pause
+            soundContext.state.sounds.forEach((sound) => {
+                sound.player && sound.player.pause();
+            })
+        } else { // Play
+            soundContext.state.sounds.forEach((sound) => {
+                sound.player && sound.player.play();
+            })
+        }
+
+        setPlayStatus(!playStatus)
     }
 
     const showSoundList = () => {
@@ -24,7 +35,7 @@ const FloatingControls = (props) => {
     return (<View style={styles.container}>
         <TouchableHighlight
             onPress={() => togglePlaying()}>
-            <Text>Play/Pause</Text>
+            <Text>{playStatus ? 'Pause' : 'Play'}</Text>
         </TouchableHighlight>
         <TouchableHighlight
             onPress={() => showSoundList()}>
@@ -40,8 +51,8 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'space-evenly',
         borderWidth: 1,
-        position:'absolute',
-        bottom:100,
+        position: 'absolute',
+        bottom: 100,
         width: '100%'
     }
 });

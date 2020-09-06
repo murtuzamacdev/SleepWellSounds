@@ -20,7 +20,7 @@ const SoundList = (props) => {
             transparent={true}
             visible={soundContext.state.showSoundListModal}
             onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
+                soundContext.setShowSoundListModal(false);
             }}
             onBackdropPress={() => soundContext.setShowSoundListModal(false)}
         >
@@ -49,7 +49,7 @@ const SoundList = (props) => {
                             soundContext.setShowSoundListModal(!soundContext.state.showSoundListModal)
                         }}
                     >
-                        <Text style={styles.textStyle}>Hide Modal</Text>
+                        <Text style={styles.textStyle}>Close</Text>
                     </TouchableHighlight>
                 </View>
             </View>
