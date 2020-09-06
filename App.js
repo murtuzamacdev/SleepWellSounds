@@ -17,11 +17,13 @@ import {
   TouchableHighlight,
   FlatList
 } from 'react-native';
-import Slider from '@react-native-community/slider';
 import { SOUNDS } from './src/common/constants';
 import MusicControl from 'react-native-music-control';
 import { AdMobBanner, AdMobInterstitial } from 'react-native-admob';
-import { SoundContext, SoundContextProvider } from './src/context/sound.context'
+import { SoundContext, SoundContextProvider } from './src/context/sound.context';
+import SoundList from './src/common/components/SoundList';
+import VolumeSlider from './src/common/components/VolumeSlider';
+import FloatingControls from './src/common/components/FloatingControls';
 
 const App: () => React$Node = () => {
 
@@ -34,8 +36,8 @@ const App: () => React$Node = () => {
 
 const AppWrapper = () => {
   const soundContext = useContext(SoundContext);
-  const [initializeMusicControl, setInitializeMusicControl] = useState(false)
-
+  const [initializeMusicControl, setInitializeMusicControl] = useState(false);
+  
   useEffect(() => {
     soundContext.initializeSounds();
 
@@ -78,8 +80,8 @@ const AppWrapper = () => {
 
   return (<>
     <StatusBar barStyle="dark-content" />
-    <SafeAreaView>
-      <ScrollView>
+    <SafeAreaView style={{ height: '100%' }}>
+      <ScrollView style={{ height: '100%' }}>
         <FlatList
           data={soundContext.state.sounds}
           numColumns={3}
@@ -89,28 +91,26 @@ const AppWrapper = () => {
               style={styles.controlToggler}
             >
               <Text style={styles.controlText}>{item.name}</Text>
-              {item.player && <Slider
-                style={{ width: 90, height: 40 }}
-                value={0.5}
-                minimumValue={0}
-                maximumValue={1}
-                minimumTrackTintColor="lightgrey"
-                maximumTrackTintColor="#000000"
-                onValueChange={(volume) => { soundContext.onVolumeChange(item.id, volume) }}
-              />
+              {item.player && <VolumeSlider item={item} />
               }
             </View>
           </TouchableHighlight>}
         />
 
-        <AdMobBanner
-          adSize="smartBannerPortrait"
-          adUnitID="ca-app-pub-7653964150164042/7040498642"
-          testDeviceID="CF583E54-34C6-453C-80FC-493D2468A51E"
-          didFailToReceiveAdWithError={onFailToRecieveAd}
-        />
       </ScrollView>
+      <AdMobBanner
+        adSize="smartBannerPortrait"
+        adUnitID="ca-app-pub-7653964150164042/7040498642"
+        testDeviceID="CF583E54-34C6-453C-80FC-493D2468A51E"
+        didFailToReceiveAdWithError={onFailToRecieveAd}
+      />
+      
+      {soundContext.state.isAnySoundPlaying !== undefined && <FloatingControls />} 
+      
+      <SoundList />
+      
     </SafeAreaView>
+
   </>);
 }
 
@@ -135,8 +135,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center'
   },
-  controlVolumeSlider: {
-
+  controlVolumeSlider:
+  {
+    width: 100,
+    height: 40
   }
 });
 

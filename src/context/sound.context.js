@@ -12,13 +12,15 @@ export const SoundContext = React.createContext();
 export class SoundContextProvider extends Component {
     state = {
         sounds: [],
+        showSoundListModal: false,
+        isAnySoundPlaying: undefined
     }
 
     initializeSounds = () => {
         let _sounds = [];
         for (let key in SOUNDS) {
             SOUNDS[key].player = null;
-            SOUNDS[key].volume = 1;
+            SOUNDS[key].volume = 0.5;
             _sounds.push(SOUNDS[key])
         }
 
@@ -45,8 +47,13 @@ export class SoundContextProvider extends Component {
             }
         })
 
+        this.setState({ isAnySoundPlaying: isAnySoundPlaying })
+
         if (isAnySoundPlaying === undefined) {
             MusicControl.resetNowPlaying();
+            this.setState({
+                showSoundListModal: false
+            })
         }
     }
 
@@ -70,6 +77,8 @@ export class SoundContextProvider extends Component {
                 sound.player.play()
             }
         })
+
+        this.setState({ isAnySoundPlaying: true })
     }
 
     initMusicControlEvents = () => {
@@ -108,20 +117,16 @@ export class SoundContextProvider extends Component {
         })
     }
 
-
-    setSounds = (_sounds) => {
-        this.setState({
-            sounds: _sounds
-        })
-    }
-
     checkSoundMaxLimit = () => {
         let playingSound = this.state.sounds.filter((sound) => {
             return (sound.player ? true : false);
         })
 
         return (playingSound.length <= 3 ? true : false)
+    }
 
+    setShowSoundListModal = (val) => {
+        this.setState({showSoundListModal: val})
     }
 
     render() {
@@ -130,12 +135,12 @@ export class SoundContextProvider extends Component {
                 value={{
                     state: this.state,
                     initMusicControlEvents: this.initMusicControlEvents,
-                    setSounds: this.setSounds,
                     initializeSounds: this.initializeSounds,
                     removeSound: this.removeSound,
                     addSound: this.addSound,
                     onVolumeChange: this.onVolumeChange,
-                    checkSoundMaxLimit: this.checkSoundMaxLimit
+                    checkSoundMaxLimit: this.checkSoundMaxLimit,
+                    setShowSoundListModal: this.setShowSoundListModal
                 }}>
                 {this.props.children}
             </SoundContext.Provider>
