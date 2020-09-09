@@ -12,6 +12,7 @@ export const SoundContext = React.createContext();
 export class SoundContextProvider extends Component {
     state = {
         sounds: [],
+        playState: MusicControl.STATE_STOPPED,
         showSoundListModal: false,
         isAnySoundPlaying: undefined
     }
@@ -39,17 +40,22 @@ export class SoundContextProvider extends Component {
             sounds: _sounds
         })
 
-        let isAnySoundPlaying = this.state.sounds.find((sound) => {
-            if (sound.player && sound.player.isPlaying) {
-                return true;
-            } else {
-                return false;
-            }
+        let isAnySoundSelected = this.state.sounds.find((sound) => {
+            return sound.player ? true : false
         })
 
-        this.setState({ isAnySoundPlaying: isAnySoundPlaying })
+        let isSoundPlaying = this.state.sounds.find((sound) => {
+            return (sound.player && sound.player.isPlaying) ? true : false
+        })
 
-        if (isAnySoundPlaying === undefined) {
+        console.log('isSou :>> ', isAnySoundSelected);
+
+        this.setState({ 
+            isAnySoundPlaying: isAnySoundSelected,
+            playState: isSoundPlaying ? MusicControl.STATE_PLAYING : MusicControl.STATE_PAUSED
+         })
+
+        if (isAnySoundSelected === undefined) {
             MusicControl.resetNowPlaying();
             this.setState({
                 showSoundListModal: false
@@ -68,6 +74,7 @@ export class SoundContextProvider extends Component {
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = selectedSound.player;
+        console.log(_sounds[selectedSoundIndex]);
         this.setState({
             sounds: _sounds
         })
@@ -78,7 +85,7 @@ export class SoundContextProvider extends Component {
             }
         })
 
-        this.setState({ isAnySoundPlaying: true })
+        this.setState({ isAnySoundPlaying: true, playState: MusicControl.STATE_PLAYING })
     }
 
     initMusicControlEvents = () => {
@@ -89,21 +96,11 @@ export class SoundContextProvider extends Component {
 
         // Add Listeners
         MusicControl.on('play', (e) => {
-            MusicControl.updatePlayback({
-                state: MusicControl.STATE_PLAYING
-            })
-            this.state.sounds.forEach((sound) => {
-                sound.player && sound.player.play();
-            })
+            togglePlay('PLAY');
         })
 
         MusicControl.on('pause', () => {
-            MusicControl.updatePlayback({
-                state: MusicControl.STATE_PAUSED
-            })
-            this.state.sounds.forEach((sound) => {
-                sound.player && sound.player.pause();
-            })
+            togglePlay('PAUSE');
         })
     }
 
@@ -126,7 +123,28 @@ export class SoundContextProvider extends Component {
     }
 
     setShowSoundListModal = (val) => {
-        this.setState({showSoundListModal: val})
+        this.setState({ showSoundListModal: val })
+    }
+
+    togglePlay = (val) => {
+        let state, method;
+        if (val === 'PLAY') {
+            state = MusicControl.STATE_PLAYING;
+            method = 'play';
+        }else {
+            state = MusicControl.STATE_PAUSED;
+            method = 'pause';
+        }
+        MusicControl.updatePlayback({
+            state: state
+        })
+        this.state.sounds.forEach((sound) => {
+            sound.player && sound.player[method]();
+        })
+
+        this.setState({
+            playState: state
+        })
     }
 
     render() {
@@ -138,6 +156,7 @@ export class SoundContextProvider extends Component {
                     initializeSounds: this.initializeSounds,
                     removeSound: this.removeSound,
                     addSound: this.addSound,
+                    togglePlay: this.togglePlay,
                     onVolumeChange: this.onVolumeChange,
                     checkSoundMaxLimit: this.checkSoundMaxLimit,
                     setShowSoundListModal: this.setShowSoundListModal

@@ -9,33 +9,28 @@ import {
     FlatList
 } from "react-native";
 import { SoundContext } from '../../context/sound.context';
+import MusicControl from 'react-native-music-control';
 
 const FloatingControls = (props) => {
     const soundContext = useContext(SoundContext);
-    const [playStatus, setPlayStatus] = useState(true);
 
-    const togglePlaying = () => {
-        if (playStatus) { // Pause
-            soundContext.state.sounds.forEach((sound) => {
-                sound.player && sound.player.pause();
-            })
+    const togglePlay = () => {
+        if (soundContext.state.playState === MusicControl.STATE_PLAYING) { // Pause
+            soundContext.togglePlay('PAUSE');
         } else { // Play
-            soundContext.state.sounds.forEach((sound) => {
-                sound.player && sound.player.play();
-            })
+            soundContext.togglePlay('PLAY');
         }
-
-        setPlayStatus(!playStatus)
     }
 
     const showSoundList = () => {
+        console.log('soundContext.state.sounds :>> ', soundContext.state.sounds);
         soundContext.setShowSoundListModal(true)
     }
 
     return (<View style={styles.container}>
         <TouchableHighlight
-            onPress={() => togglePlaying()}>
-            <Text>{playStatus ? 'Pause' : 'Play'}</Text>
+            onPress={() => togglePlay()}>
+            <Text>{soundContext.state.playState !== MusicControl.STATE_PAUSED ? 'Pause' : 'Play'}</Text>
         </TouchableHighlight>
         <TouchableHighlight
             onPress={() => showSoundList()}>
@@ -53,8 +48,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'green',
         borderRadius: 20,
-        position: 'absolute',
-        bottom: 100,
+        // position: 'absolute',
+        // bottom: 100,
         width: '100%',
         paddingLeft: 50,
         paddingRight: 50,

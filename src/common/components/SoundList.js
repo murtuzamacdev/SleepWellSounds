@@ -19,10 +19,6 @@ const SoundList = (props) => {
             animationType="slide"
             transparent={true}
             visible={soundContext.state.showSoundListModal}
-            onRequestClose={() => {
-                soundContext.setShowSoundListModal(false);
-            }}
-            onBackdropPress={() => soundContext.setShowSoundListModal(false)}
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
@@ -30,7 +26,7 @@ const SoundList = (props) => {
                         data={soundContext.state.sounds}
                         keyExtractor={(item, index) => item.id}
                         renderItem={({ item }) => {
-                            if (item.player) {
+                            if (item.player !== null) {
                                 return <View style={styles.listItem} >
                                     <Text style={styles.controlText}>{item.name}</Text>
                                     {item.player && <VolumeSlider item={item} />}
@@ -39,6 +35,8 @@ const SoundList = (props) => {
                                         <Text>Remove</Text>
                                     </TouchableHighlight>
                                 </View>
+                            } else {
+                                return null
                             }
                         }}
                     />
@@ -54,15 +52,6 @@ const SoundList = (props) => {
                 </View>
             </View>
         </Modal>
-
-        <TouchableHighlight
-            style={styles.openButton}
-            onPress={() => {
-                soundContext.setShowSoundListModal(true)
-            }}
-        >
-            <Text style={styles.textStyle}>Show Modal</Text>
-        </TouchableHighlight>
     </View>);
 }
 

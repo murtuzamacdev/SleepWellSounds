@@ -62,13 +62,6 @@ export var SOUNDS = {
         icon:'',
         volume: 0.5,
     },
-    BELLS: {
-        id: 'BELLS',
-        fileName: 'rlbell.mp3',
-        name: 'Bells',
-        icon:'',
-        volume: 0.5,
-    },
     OM: {
         id: 'OM',
         fileName: 'rlom.mp3',
@@ -76,11 +69,19 @@ export var SOUNDS = {
         icon:'',
         volume: 0.5,
     },
-    FLUTE: {
-        id: 'FLUTE',
-        fileName: 'rlflute.wav',
-        name: 'Flute',
+    BELLS: {
+        id: 'BELLS',
+        fileName: 'rlbell.mp3',
+        name: 'Bells',
         icon:'',
         volume: 0.5,
-    }
+    },
+    
+    // FLUTE: {
+    //     id: 'FLUTE',
+    //     fileName: 'rlflute.wav',
+    //     name: 'Flute',
+    //     icon:'',
+    //     volume: 0.5,
+    // }
 }

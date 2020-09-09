@@ -37,7 +37,7 @@ const App: () => React$Node = () => {
 const AppWrapper = () => {
   const soundContext = useContext(SoundContext);
   const [initializeMusicControl, setInitializeMusicControl] = useState(false);
-  
+
   useEffect(() => {
     soundContext.initializeSounds();
 
@@ -81,36 +81,33 @@ const AppWrapper = () => {
   return (<>
     <StatusBar barStyle="dark-content" />
     <SafeAreaView style={{ height: '100%' }}>
-      <ScrollView style={{ height: '100%' }}>
-        <FlatList
-          data={soundContext.state.sounds}
-          numColumns={3}
-          keyExtractor={(item, index) => item.id}
-          renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={styles.controlCtnr}>
-            <View
-              style={styles.controlToggler}
-            >
-              <Text style={styles.controlText}>{item.name}</Text>
-              {item.player && <VolumeSlider item={item} />
-              }
-            </View>
-          </TouchableHighlight>}
-        />
+      {/* <ScrollView style={{ height: '100%' }}> */}
+      <FlatList
+        data={soundContext.state.sounds}
+        numColumns={2}
+        keyExtractor={(item, index) => item.id}
+        renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={styles.controlCtnr}>
+          <View style={styles.controlToggler}>
+            <Text style={styles.controlText}>{item.name}</Text>
+            {item.player && <VolumeSlider item={item} />
+            }
+          </View>
+        </TouchableHighlight>}
+      />
 
-      </ScrollView>
+      {/* </ScrollView> */}
+      
+
+      {soundContext.state.isAnySoundPlaying !== undefined && <FloatingControls />}
+      {soundContext.state.isAnySoundPlaying !== undefined && <SoundList />}
+
       <AdMobBanner
         adSize="smartBannerPortrait"
         adUnitID="ca-app-pub-7653964150164042/7040498642"
         testDeviceID="CF583E54-34C6-453C-80FC-493D2468A51E"
         didFailToReceiveAdWithError={onFailToRecieveAd}
       />
-      
-      {soundContext.state.isAnySoundPlaying !== undefined && <FloatingControls />} 
-      
-      <SoundList />
-      
     </SafeAreaView>
-
   </>);
 }
 
@@ -118,7 +115,7 @@ const AppWrapper = () => {
 const styles = StyleSheet.create({
   controlCtnr: {
     borderWidth: 1,
-    height: 100,
+    height: 130,
     flex: 1,
     margin: 10,
     flexDirection: 'column',
