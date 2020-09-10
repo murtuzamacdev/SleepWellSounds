@@ -43,7 +43,6 @@ const AppWrapper = () => {
 
     // Show Interstitial Ad
     // AdMobInterstitial.setAdUnitID('ca-app-pub-7653964150164042/1289478516');
-    // AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
     // AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
   }, []);
 
@@ -81,7 +80,6 @@ const AppWrapper = () => {
   return (<>
     <StatusBar barStyle="dark-content" />
     <SafeAreaView style={{ height: '100%' }}>
-      {/* <ScrollView style={{ height: '100%' }}> */}
       <FlatList
         data={soundContext.state.sounds}
         numColumns={2}
@@ -94,17 +92,12 @@ const AppWrapper = () => {
           </View>
         </TouchableHighlight>}
       />
-
-      {/* </ScrollView> */}
-      
-
       {soundContext.state.isAnySoundPlaying !== undefined && <FloatingControls />}
       {soundContext.state.isAnySoundPlaying !== undefined && <SoundList />}
 
       <AdMobBanner
         adSize="smartBannerPortrait"
         adUnitID="ca-app-pub-7653964150164042/7040498642"
-        testDeviceID="CF583E54-34C6-453C-80FC-493D2468A51E"
         didFailToReceiveAdWithError={onFailToRecieveAd}
       />
     </SafeAreaView>
