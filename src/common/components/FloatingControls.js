@@ -5,6 +5,7 @@ import {
     StyleSheet,
     Text,
     TouchableHighlight,
+    TouchableOpacity,
     View,
     FlatList
 } from "react-native";
@@ -23,18 +24,19 @@ const FloatingControls = (props) => {
     }
 
     const showSoundList = () => {
-        console.log('soundContext.state.sounds :>> ', soundContext.state.sounds);
         soundContext.setShowSoundListModal(true)
     }
 
     return (<View style={styles.container}>
         <TouchableHighlight
+        style={styles.buttons}
             onPress={() => togglePlay()}>
-            <Text>{soundContext.state.playState !== MusicControl.STATE_PAUSED ? 'Pause' : 'Play'}</Text>
+            <Text style={styles.btnLable}>{soundContext.state.playState !== MusicControl.STATE_PAUSED ? 'Pause' : 'Play'}</Text>
         </TouchableHighlight>
         <TouchableHighlight
+            style={styles.buttons}
             onPress={() => showSoundList()}>
-            <Text>Sound List</Text>
+            <Text style={styles.btnLable}>Sound List</Text>
         </TouchableHighlight>
     </View>);
 }
@@ -44,17 +46,20 @@ const styles = StyleSheet.create({
     {
         flexDirection: 'row',
         alignContent: 'center',
-        justifyContent: 'space-evenly',
-        borderWidth: 1,
-        borderColor: 'green',
-        borderRadius: 20,
-        // position: 'absolute',
-        // bottom: 100,
-        width: '100%',
-        paddingLeft: 50,
-        paddingRight: 50,
-        paddingTop: 20,
-        paddingBottom: 20
+        justifyContent: 'space-around',
+        backgroundColor: 'lightgrey',
+        borderTopWidth: 1,
+        borderColor: 'grey',
+        height: 60
+        
+    },
+    buttons: {
+        flex: 1,
+        alignContent: 'center',
+        justifyContent: 'center',
+    }, 
+    btnLable: {
+        textAlign: 'center'
     }
 });
 

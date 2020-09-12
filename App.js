@@ -15,6 +15,7 @@ import {
   Text,
   StatusBar,
   TouchableHighlight,
+  Image,
   FlatList
 } from 'react-native';
 import { SOUNDS } from './src/common/constants';
@@ -84,11 +85,14 @@ const AppWrapper = () => {
         data={soundContext.state.sounds}
         numColumns={2}
         keyExtractor={(item, index) => item.id}
-        renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={styles.controlCtnr}>
+        renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={[styles.controlCtnr, {backgroundColor: item.backgroundColor}]} >
           <View style={styles.controlToggler}>
-            <Text style={styles.controlText}>{item.name}</Text>
-            {item.player && <VolumeSlider item={item} />
-            }
+            {/* <Text style={styles.controlText}>{item.name}</Text> */}
+            <Image
+              style={styles.soundIcon}
+              source={require('./src/assets/images/rain.png')}
+            />
+            {item.player && <VolumeSlider item={item} />}
           </View>
         </TouchableHighlight>}
       />
@@ -107,21 +111,21 @@ const AppWrapper = () => {
 
 const styles = StyleSheet.create({
   controlCtnr: {
-    borderWidth: 1,
+    // borderWidth: 1,
     height: 130,
     flex: 1,
-    margin: 10,
+    // margin: 10,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignContent: 'center',
+    justifyContent: 'space-evenly',
+    // alignContent: 'center',
     borderColor: 'green',
-    borderRadius: 10
+    // borderRadius: 10,
   },
   controlToggler: {
     textAlign: 'center'
   },
   controlText: {
-    color: 'green',
+    color: 'white',
     fontSize: 20,
     textAlign: 'center'
   },
@@ -129,6 +133,10 @@ const styles = StyleSheet.create({
   {
     width: 100,
     height: 40
+  },
+  soundIcon: {
+    width: 65, 
+    alignSelf: 'center'
   }
 });
 

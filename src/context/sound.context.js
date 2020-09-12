@@ -48,8 +48,6 @@ export class SoundContextProvider extends Component {
             return (sound.player && sound.player.isPlaying) ? true : false
         })
 
-        console.log('isSou :>> ', isAnySoundSelected);
-
         this.setState({ 
             isAnySoundPlaying: isAnySoundSelected,
             playState: isSoundPlaying ? MusicControl.STATE_PLAYING : MusicControl.STATE_PAUSED
@@ -74,7 +72,6 @@ export class SoundContextProvider extends Component {
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = selectedSound.player;
-        console.log(_sounds[selectedSoundIndex]);
         this.setState({
             sounds: _sounds
         })
