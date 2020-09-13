@@ -20,24 +20,22 @@
 		C9922D65C36ED729CDE2BF4D /* libPods-SleepWellSounds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1955EF208EB188713CEFE9C5 /* libPods-SleepWellSounds.a */; };
 		CCA4CE6C4CF25445FFB85C22 /* libPods-SleepWellSounds-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35D7820908F0BA74C193D5E9 /* libPods-SleepWellSounds-tvOS.a */; };
 		E18C1A3756AF0F44706B3954 /* libPods-SleepWellSounds-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC648C7299576BC6242EEBE /* libPods-SleepWellSounds-tvOSTests.a */; };
-		FE1D753A24FC332C00D2B198 /* cttrain.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753024FC332B00D2B198 /* cttrain.wav */; };
-		FE1D753B24FC332C00D2B198 /* fnforestnight.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753124FC332B00D2B198 /* fnforestnight.wav */; };
-		FE1D753C24FC332C00D2B198 /* ctairplane.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753224FC332B00D2B198 /* ctairplane.wav */; };
-		FE1D753D24FC332C00D2B198 /* fnbirdschirping.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753324FC332B00D2B198 /* fnbirdschirping.wav */; };
-		FE1D753E24FC332C00D2B198 /* fnstream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753424FC332B00D2B198 /* fnstream.mp3 */; };
-		FE1D753F24FC332C00D2B198 /* rlbell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753524FC332B00D2B198 /* rlbell.mp3 */; };
-		FE1D754024FC332C00D2B198 /* rlflute.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753624FC332B00D2B198 /* rlflute.wav */; };
-		FE1D754124FC332C00D2B198 /* thunder.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753724FC332B00D2B198 /* thunder.wav */; };
-		FE1D754224FC332C00D2B198 /* ctcarengine.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753824FC332C00D2B198 /* ctcarengine.wav */; };
-		FE1D754324FC332C00D2B198 /* rlom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE1D753924FC332C00D2B198 /* rlom.mp3 */; };
-		FE20866F24F2F926009B2F25 /* raindrips.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE20866D24F2F926009B2F25 /* raindrips.mp3 */; };
-		FE20867024F2F926009B2F25 /* waves.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE20866E24F2F926009B2F25 /* waves.wav */; };
-		FE9697CB250BF561000F7F27 /* rain.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE9697C7250BF560000F7F27 /* rain.wav */; };
-		FE9697CC250BF561000F7F27 /* whitenoisea.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE9697C8250BF561000F7F27 /* whitenoisea.wav */; };
-		FE9697CD250BF561000F7F27 /* windowpane.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE9697C9250BF561000F7F27 /* windowpane.wav */; };
-		FE9697CE250BF561000F7F27 /* whitenoiseb.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE9697CA250BF561000F7F27 /* whitenoiseb.wav */; };
-		FE9697D0250C0FBB000F7F27 /* flute.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE9697CF250C0FBA000F7F27 /* flute.wav */; };
-		FEEEDA89250C9CD7002B28CC /* om.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEEEDA88250C9CD7002B28CC /* om.wav */; };
+		FEB99157250DF795001644F1 /* night.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99147250DF793001644F1 /* night.wav */; };
+		FEB99158250DF795001644F1 /* om.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99148250DF793001644F1 /* om.wav */; };
+		FEB99159250DF795001644F1 /* wind.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99149250DF793001644F1 /* wind.wav */; };
+		FEB9915A250DF795001644F1 /* whitenoiseb.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB9914A250DF793001644F1 /* whitenoiseb.wav */; };
+		FEB9915B250DF795001644F1 /* car.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB9914B250DF793001644F1 /* car.wav */; };
+		FEB9915C250DF795001644F1 /* bowl.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB9914C250DF794001644F1 /* bowl.wav */; };
+		FEB9915D250DF795001644F1 /* fan.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB9914D250DF794001644F1 /* fan.wav */; };
+		FEB9915E250DF795001644F1 /* waves.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB9914E250DF794001644F1 /* waves.wav */; };
+		FEB9915F250DF795001644F1 /* rain.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB9914F250DF794001644F1 /* rain.wav */; };
+		FEB99160250DF795001644F1 /* thunder.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99150250DF794001644F1 /* thunder.wav */; };
+		FEB99161250DF795001644F1 /* flute.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99151250DF794001644F1 /* flute.wav */; };
+		FEB99162250DF795001644F1 /* whitenoisea.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99152250DF794001644F1 /* whitenoisea.wav */; };
+		FEB99163250DF795001644F1 /* umbrella.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99153250DF794001644F1 /* umbrella.wav */; };
+		FEB99164250DF795001644F1 /* birds.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99154250DF794001644F1 /* birds.wav */; };
+		FEB99165250DF795001644F1 /* fire.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99155250DF794001644F1 /* fire.wav */; };
+		FEB99166250DF795001644F1 /* stream.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEB99156250DF795001644F1 /* stream.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,25 +82,23 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F03F8838A72A5357B5218FFB /* libPods-SleepWellSounds-SleepWellSoundsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepWellSounds-SleepWellSoundsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBC648C7299576BC6242EEBE /* libPods-SleepWellSounds-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepWellSounds-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE1D753024FC332B00D2B198 /* cttrain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cttrain.wav; path = ../android/app/src/main/res/raw/cttrain.wav; sourceTree = "<group>"; };
-		FE1D753124FC332B00D2B198 /* fnforestnight.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fnforestnight.wav; path = ../android/app/src/main/res/raw/fnforestnight.wav; sourceTree = "<group>"; };
-		FE1D753224FC332B00D2B198 /* ctairplane.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ctairplane.wav; path = ../android/app/src/main/res/raw/ctairplane.wav; sourceTree = "<group>"; };
-		FE1D753324FC332B00D2B198 /* fnbirdschirping.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fnbirdschirping.wav; path = ../android/app/src/main/res/raw/fnbirdschirping.wav; sourceTree = "<group>"; };
-		FE1D753424FC332B00D2B198 /* fnstream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fnstream.mp3; path = ../android/app/src/main/res/raw/fnstream.mp3; sourceTree = "<group>"; };
-		FE1D753524FC332B00D2B198 /* rlbell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rlbell.mp3; path = ../android/app/src/main/res/raw/rlbell.mp3; sourceTree = "<group>"; };
-		FE1D753624FC332B00D2B198 /* rlflute.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = rlflute.wav; path = ../android/app/src/main/res/raw/rlflute.wav; sourceTree = "<group>"; };
-		FE1D753724FC332B00D2B198 /* thunder.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = thunder.wav; path = ../android/app/src/main/res/raw/thunder.wav; sourceTree = "<group>"; };
-		FE1D753824FC332C00D2B198 /* ctcarengine.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ctcarengine.wav; path = ../android/app/src/main/res/raw/ctcarengine.wav; sourceTree = "<group>"; };
-		FE1D753924FC332C00D2B198 /* rlom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rlom.mp3; path = ../android/app/src/main/res/raw/rlom.mp3; sourceTree = "<group>"; };
-		FE20866D24F2F926009B2F25 /* raindrips.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = raindrips.mp3; path = ../android/app/src/main/res/raw/raindrips.mp3; sourceTree = "<group>"; };
-		FE20866E24F2F926009B2F25 /* waves.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waves.wav; path = ../android/app/src/main/res/raw/waves.wav; sourceTree = "<group>"; };
-		FE9697C7250BF560000F7F27 /* rain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = rain.wav; path = ../android/app/src/main/res/raw/rain.wav; sourceTree = "<group>"; };
-		FE9697C8250BF561000F7F27 /* whitenoisea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = whitenoisea.wav; path = ../android/app/src/main/res/raw/whitenoisea.wav; sourceTree = "<group>"; };
-		FE9697C9250BF561000F7F27 /* windowpane.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = windowpane.wav; path = ../android/app/src/main/res/raw/windowpane.wav; sourceTree = "<group>"; };
-		FE9697CA250BF561000F7F27 /* whitenoiseb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = whitenoiseb.wav; path = ../android/app/src/main/res/raw/whitenoiseb.wav; sourceTree = "<group>"; };
-		FE9697CF250C0FBA000F7F27 /* flute.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = flute.wav; path = ../android/app/src/main/res/raw/flute.wav; sourceTree = "<group>"; };
+		FEB99147250DF793001644F1 /* night.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = night.wav; path = ../android/app/src/main/res/raw/night.wav; sourceTree = "<group>"; };
+		FEB99148250DF793001644F1 /* om.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = om.wav; path = ../android/app/src/main/res/raw/om.wav; sourceTree = "<group>"; };
+		FEB99149250DF793001644F1 /* wind.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = wind.wav; path = ../android/app/src/main/res/raw/wind.wav; sourceTree = "<group>"; };
+		FEB9914A250DF793001644F1 /* whitenoiseb.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = whitenoiseb.wav; path = ../android/app/src/main/res/raw/whitenoiseb.wav; sourceTree = "<group>"; };
+		FEB9914B250DF793001644F1 /* car.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = car.wav; path = ../android/app/src/main/res/raw/car.wav; sourceTree = "<group>"; };
+		FEB9914C250DF794001644F1 /* bowl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bowl.wav; path = ../android/app/src/main/res/raw/bowl.wav; sourceTree = "<group>"; };
+		FEB9914D250DF794001644F1 /* fan.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fan.wav; path = ../android/app/src/main/res/raw/fan.wav; sourceTree = "<group>"; };
+		FEB9914E250DF794001644F1 /* waves.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = waves.wav; path = ../android/app/src/main/res/raw/waves.wav; sourceTree = "<group>"; };
+		FEB9914F250DF794001644F1 /* rain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = rain.wav; path = ../android/app/src/main/res/raw/rain.wav; sourceTree = "<group>"; };
+		FEB99150250DF794001644F1 /* thunder.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = thunder.wav; path = ../android/app/src/main/res/raw/thunder.wav; sourceTree = "<group>"; };
+		FEB99151250DF794001644F1 /* flute.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = flute.wav; path = ../android/app/src/main/res/raw/flute.wav; sourceTree = "<group>"; };
+		FEB99152250DF794001644F1 /* whitenoisea.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = whitenoisea.wav; path = ../android/app/src/main/res/raw/whitenoisea.wav; sourceTree = "<group>"; };
+		FEB99153250DF794001644F1 /* umbrella.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = umbrella.wav; path = ../android/app/src/main/res/raw/umbrella.wav; sourceTree = "<group>"; };
+		FEB99154250DF794001644F1 /* birds.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = birds.wav; path = ../android/app/src/main/res/raw/birds.wav; sourceTree = "<group>"; };
+		FEB99155250DF794001644F1 /* fire.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fire.wav; path = ../android/app/src/main/res/raw/fire.wav; sourceTree = "<group>"; };
+		FEB99156250DF795001644F1 /* stream.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = stream.wav; path = ../android/app/src/main/res/raw/stream.wav; sourceTree = "<group>"; };
 		FEC793D11539E6CE653D989D /* Pods-SleepWellSounds-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepWellSounds-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-SleepWellSounds-tvOS/Pods-SleepWellSounds-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		FEEEDA88250C9CD7002B28CC /* om.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = om.wav; path = ../../../sounds/om.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,24 +157,22 @@
 		13B07FAE1A68108700A75B9A /* SleepWellSounds */ = {
 			isa = PBXGroup;
 			children = (
-				FEEEDA88250C9CD7002B28CC /* om.wav */,
-				FE9697CF250C0FBA000F7F27 /* flute.wav */,
-				FE9697C7250BF560000F7F27 /* rain.wav */,
-				FE9697C8250BF561000F7F27 /* whitenoisea.wav */,
-				FE9697CA250BF561000F7F27 /* whitenoiseb.wav */,
-				FE9697C9250BF561000F7F27 /* windowpane.wav */,
-				FE1D753224FC332B00D2B198 /* ctairplane.wav */,
-				FE1D753824FC332C00D2B198 /* ctcarengine.wav */,
-				FE1D753024FC332B00D2B198 /* cttrain.wav */,
-				FE1D753324FC332B00D2B198 /* fnbirdschirping.wav */,
-				FE1D753124FC332B00D2B198 /* fnforestnight.wav */,
-				FE1D753424FC332B00D2B198 /* fnstream.mp3 */,
-				FE1D753524FC332B00D2B198 /* rlbell.mp3 */,
-				FE1D753624FC332B00D2B198 /* rlflute.wav */,
-				FE1D753924FC332C00D2B198 /* rlom.mp3 */,
-				FE1D753724FC332B00D2B198 /* thunder.wav */,
-				FE20866D24F2F926009B2F25 /* raindrips.mp3 */,
-				FE20866E24F2F926009B2F25 /* waves.wav */,
+				FEB99154250DF794001644F1 /* birds.wav */,
+				FEB9914C250DF794001644F1 /* bowl.wav */,
+				FEB9914B250DF793001644F1 /* car.wav */,
+				FEB9914D250DF794001644F1 /* fan.wav */,
+				FEB99155250DF794001644F1 /* fire.wav */,
+				FEB99151250DF794001644F1 /* flute.wav */,
+				FEB99147250DF793001644F1 /* night.wav */,
+				FEB99148250DF793001644F1 /* om.wav */,
+				FEB9914F250DF794001644F1 /* rain.wav */,
+				FEB99156250DF795001644F1 /* stream.wav */,
+				FEB99150250DF794001644F1 /* thunder.wav */,
+				FEB99153250DF794001644F1 /* umbrella.wav */,
+				FEB9914E250DF794001644F1 /* waves.wav */,
+				FEB99152250DF794001644F1 /* whitenoisea.wav */,
+				FEB9914A250DF793001644F1 /* whitenoiseb.wav */,
+				FEB99149250DF793001644F1 /* wind.wav */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -393,26 +387,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE9697CD250BF561000F7F27 /* windowpane.wav in Resources */,
-				FE9697D0250C0FBB000F7F27 /* flute.wav in Resources */,
-				FE9697CB250BF561000F7F27 /* rain.wav in Resources */,
-				FE1D753B24FC332C00D2B198 /* fnforestnight.wav in Resources */,
-				FE1D753A24FC332C00D2B198 /* cttrain.wav in Resources */,
-				FE20866F24F2F926009B2F25 /* raindrips.mp3 in Resources */,
-				FE1D753E24FC332C00D2B198 /* fnstream.mp3 in Resources */,
-				FE1D753D24FC332C00D2B198 /* fnbirdschirping.wav in Resources */,
-				FE1D754124FC332C00D2B198 /* thunder.wav in Resources */,
-				FE1D753F24FC332C00D2B198 /* rlbell.mp3 in Resources */,
-				FEEEDA89250C9CD7002B28CC /* om.wav in Resources */,
-				FE1D753C24FC332C00D2B198 /* ctairplane.wav in Resources */,
-				FE9697CE250BF561000F7F27 /* whitenoiseb.wav in Resources */,
-				FE1D754224FC332C00D2B198 /* ctcarengine.wav in Resources */,
+				FEB9915C250DF795001644F1 /* bowl.wav in Resources */,
+				FEB99159250DF795001644F1 /* wind.wav in Resources */,
+				FEB99157250DF795001644F1 /* night.wav in Resources */,
+				FEB9915E250DF795001644F1 /* waves.wav in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				FE9697CC250BF561000F7F27 /* whitenoisea.wav in Resources */,
-				FE1D754324FC332C00D2B198 /* rlom.mp3 in Resources */,
+				FEB99160250DF795001644F1 /* thunder.wav in Resources */,
+				FEB99158250DF795001644F1 /* om.wav in Resources */,
+				FEB99165250DF795001644F1 /* fire.wav in Resources */,
+				FEB99162250DF795001644F1 /* whitenoisea.wav in Resources */,
+				FEB9915B250DF795001644F1 /* car.wav in Resources */,
+				FEB99164250DF795001644F1 /* birds.wav in Resources */,
+				FEB9915D250DF795001644F1 /* fan.wav in Resources */,
+				FEB99166250DF795001644F1 /* stream.wav in Resources */,
+				FEB9915F250DF795001644F1 /* rain.wav in Resources */,
+				FEB9915A250DF795001644F1 /* whitenoiseb.wav in Resources */,
+				FEB99161250DF795001644F1 /* flute.wav in Resources */,
+				FEB99163250DF795001644F1 /* umbrella.wav in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				FE1D754024FC332C00D2B198 /* rlflute.wav in Resources */,
-				FE20867024F2F926009B2F25 /* waves.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

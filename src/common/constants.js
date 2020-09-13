@@ -4,54 +4,54 @@ export var SOUNDS = {
         fileName: 'rain.wav',
         name: 'Rain',
         volume: 0.5,
-        icon: '',
+        icon: require('../assets/images/icons/rain.png'),
         backgroundColor: '#45963B'
     },
     THUNDER: {
         id: 'THUNDER',
         fileName: 'thunder.wav',
         name: 'Thunder',
-        icon: '',
+        icon: require('../assets/images/icons/thunder.png'),
         volume: 0.5,
         backgroundColor: '#74BB4C'
     },
     RAIN_WINDOW: {
         id: 'RAIN_WINDOW',
-        fileName: 'windowpane.wav',
+        fileName: 'umbrella.wav',
         name: 'Rain on windows',
-        icon: '',
+        icon: require('../assets/images/icons/umbrella.png'),
         volume: 0.5,
         backgroundColor: '#98CB80'
     },
-    FLUTE: {
-        id: 'FLUTE',
-        fileName: 'flute.wav',
-        name: 'Flute',
-        icon: '',
+    BIRDS: {
+        id: 'BIRDS',
+        fileName: 'birds.wav',
+        name: 'Birds',
+        icon: require('../assets/images/icons/bird.png'),
         volume: 0.5,
         backgroundColor: '#77B982'
     },
     WIND: {
         id: 'WIND',
-        fileName: 'ctcarengine.wav',
+        fileName: 'wind.wav',
         name: 'Wind',
-        icon: '',
+        icon: require('../assets/images/icons/wind.png'),
         volume: 0.5,
         backgroundColor: '#3C925B'
     },
-    BIRDS: {
-        id: 'BIRDS',
-        fileName: 'fnbirdschirping.wav',
-        name: 'Birds',
-        icon: '',
+    FLUTE: {
+        id: 'FLUTE',
+        fileName: 'flute.wav',
+        name: 'Flute',
+        icon: require('../assets/images/icons/flute.png'),
         volume: 0.5,
         backgroundColor: '#9CC7A5'
     },
     STREAM: {
         id: 'STREAM',
-        fileName: 'fnstream.mp3',
+        fileName: 'stream.wav',
         name: 'Stream',
-        icon: '',
+        icon: require('../assets/images/icons/stream.png'),
         volume: 0.5,
         backgroundColor: '#44AAAA'
     },
@@ -59,15 +59,15 @@ export var SOUNDS = {
         id: 'OM',
         fileName: 'om.wav',
         name: 'OM',
-        icon: '',
+        icon: require('../assets/images/icons/mudra.png'),
         volume: 0.5,
         backgroundColor: '#126DAB'
     },
     FIRE: {
         id: 'FIRE',
-        fileName: 'cttrain.wav',
+        fileName: 'fire.wav',
         name: 'Fire',
-        icon: '',
+        icon: require('../assets/images/icons/bonfire.png'),
         volume: 0.5,
         backgroundColor: '#0D3D84'
     },
@@ -75,23 +75,23 @@ export var SOUNDS = {
         id: 'WAVES',
         fileName: 'waves.wav',
         name: 'Waves',
-        icon: '',
+        icon: require('../assets/images/icons/waves.png'),
         volume: 0.5,
         backgroundColor: '#1C2239'
     },
     BOWL: {
         id: 'BOWL',
-        fileName: 'ctairplane.wav',
+        fileName: 'bowl.wav',
         name: 'Bowl',
-        icon: '',
+        icon: require('../assets/images/icons/bowl.png'),
         volume: 0.5,
         backgroundColor: '#545488'
     },
     CRICKET: {
         id: 'CRICKET',
-        fileName: 'fnforestnight.wav',
+        fileName: 'night.wav',
         name: 'Cricket',
-        icon: '',
+        icon: require('../assets/images/icons/night.png'),
         volume: 0.5,
         backgroundColor: '#3A3387'
     },
@@ -99,7 +99,7 @@ export var SOUNDS = {
         id: 'WHITE_NOISE_1',
         fileName: 'whitenoisea.wav',
         name: 'White Noise 1',
-        icon: '',
+        icon: require('../assets/images/icons/whitenoisea.png'),
         volume: 0.5,
         backgroundColor: '#68407c'
     },
@@ -108,24 +108,24 @@ export var SOUNDS = {
         id: 'STREAM1',
         fileName: 'whitenoiseb.wav',
         name: 'White Noise 2',
-        icon: '',
+        icon: require('../assets/images/icons/whitenoiseb.png'),
         volume: 0.5,
         backgroundColor: '#251743'
     },
     FAN: {
         id: 'FAN',
-        fileName: 'rlom.mp3',
+        fileName: 'fan.wav',
         name: 'Fan',
-        icon: '',
+        icon: require('../assets/images/icons/fan.png'),
         volume: 0.5,
         backgroundColor: '#311b46'
     },
     CAR: {
         id: 'CAR',
-        fileName: 'rlom.mp3',
+        fileName: 'car.wav',
         name: 'Car',
-        icon: '',
+        icon: require('../assets/images/icons/car.png'),
         volume: 0.5,
-        backgroundColor: '#142107'
+        backgroundColor: '#190d25'
     },
 }

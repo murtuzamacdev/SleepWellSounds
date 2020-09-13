@@ -88,16 +88,16 @@ export class SoundContextProvider extends Component {
     initMusicControlEvents = () => {
         MusicControl.enableControl('play', true)
         MusicControl.enableControl('pause', true)
-        MusicControl.enableBackgroundMode(false);
+        MusicControl.enableBackgroundMode(true);
         MusicControl.enableControl('closeNotification', true, { when: 'always' });
 
         // Add Listeners
         MusicControl.on('play', (e) => {
-            togglePlay('PLAY');
+            this.togglePlay('PLAY');
         })
 
         MusicControl.on('pause', () => {
-            togglePlay('PAUSE');
+            this.togglePlay('PAUSE');
         })
     }
 
@@ -116,7 +116,7 @@ export class SoundContextProvider extends Component {
             return (sound.player ? true : false);
         })
 
-        return (playingSound.length <= 3 ? true : false)
+        return (playingSound.length <= 8 ? true : false)
     }
 
     setShowSoundListModal = (val) => {

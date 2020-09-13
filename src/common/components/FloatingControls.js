@@ -7,7 +7,8 @@ import {
     TouchableHighlight,
     TouchableOpacity,
     View,
-    FlatList
+    FlatList,
+    Image
 } from "react-native";
 import { SoundContext } from '../../context/sound.context';
 import MusicControl from 'react-native-music-control';
@@ -29,14 +30,23 @@ const FloatingControls = (props) => {
 
     return (<View style={styles.container}>
         <TouchableHighlight
-        style={styles.buttons}
+            style={styles.buttons}
             onPress={() => togglePlay()}>
-            <Text style={styles.btnLable}>{soundContext.state.playState !== MusicControl.STATE_PAUSED ? 'Pause' : 'Play'}</Text>
+            {soundContext.state.playState !== MusicControl.STATE_PAUSED ? <Image
+                style={styles.icons}
+                source={require('../../assets/images/icons/pause.png')}
+            /> : <Image
+                    style={styles.icons}
+                    source={require('../../assets/images/icons/play.png')}
+                />}
         </TouchableHighlight>
         <TouchableHighlight
             style={styles.buttons}
             onPress={() => showSoundList()}>
-            <Text style={styles.btnLable}>Sound List</Text>
+            <Image
+                style={styles.icons}
+                source={require('../../assets/images/icons/sounds.png')}
+            />
         </TouchableHighlight>
     </View>);
 }
@@ -48,18 +58,24 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'space-around',
         backgroundColor: 'lightgrey',
-        borderTopWidth: 1,
-        borderColor: 'grey',
+        borderTopWidth: 3,
+        borderColor: 'white',
         height: 60
-        
+
     },
     buttons: {
         flex: 1,
         alignContent: 'center',
-        justifyContent: 'center',
-    }, 
+        justifyContent: 'center'
+    },
     btnLable: {
         textAlign: 'center'
+    },
+    icons: {
+        width: 30,
+        height: 30,
+        resizeMode: 'contain',
+        alignSelf: 'center'
     }
 });
 

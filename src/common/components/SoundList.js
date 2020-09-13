@@ -5,8 +5,10 @@ import {
     StyleSheet,
     Text,
     TouchableHighlight,
+    TouchableOpacity,
     View,
-    FlatList
+    FlatList,
+    Image
 } from "react-native";
 import { SoundContext } from '../../context/sound.context';
 import VolumeSlider from './VolumeSlider';
@@ -28,11 +30,17 @@ const SoundList = (props) => {
                         renderItem={({ item }) => {
                             if (item.player !== null) {
                                 return <View style={styles.listItem} >
-                                    <Text style={styles.controlText}>{item.name}</Text>
+                                    <Image
+                                        style={styles.soundIcon}
+                                        source={item.icon}
+                                    />
                                     {item.player && <VolumeSlider item={item} />}
                                     <TouchableHighlight
                                         onPress={() => soundContext.removeSound(item)}>
-                                        <Text>Remove</Text>
+                                        <Image
+                                            style={styles.removeIcon}
+                                            source={require('../../assets/images/icons/remove.png')}
+                                        />
                                     </TouchableHighlight>
                                 </View>
                             } else {
@@ -41,14 +49,14 @@ const SoundList = (props) => {
                         }}
                     />
 
-                    <TouchableHighlight
-                        style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                    <TouchableOpacity
+                        style={styles.closeBtn}
                         onPress={() => {
                             soundContext.setShowSoundListModal(!soundContext.state.showSoundListModal)
                         }}
                     >
                         <Text style={styles.textStyle}>Close</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
             </View>
         </Modal>
@@ -64,10 +72,10 @@ const styles = StyleSheet.create({
     },
     modalView: {
         paddingTop: 35,
-        paddingBottom: 35,
+        paddingBottom: 25,
         backgroundColor: "white",
         borderRadius: 20,
-
+        backgroundColor: 'grey',
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
@@ -77,31 +85,44 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
-        width: 300,
+        width: '90%',
+        maxHeight: '80%'
 
     },
-    openButton: {
-        backgroundColor: "#F194FF",
+    closeBtn: {
+        marginTop: 15,
+        backgroundColor: "transparent",
         borderRadius: 20,
-        padding: 10,
-        elevation: 2
+        elevation: 0
     },
     textStyle: {
         color: "white",
-        fontWeight: "bold",
+        fontSize: 18,
         textAlign: "center"
     },
     modalText: {
         marginBottom: 15,
         textAlign: "center"
     },
-
     listItem: {
         flexDirection: 'row',
         justifyContent: "space-evenly",
         alignItems: "center",
-        width: 250,
+        // borderWidth: 1,
+        width: '100%',
+        marginBottom: 30
     },
+    soundIcon: {
+        borderWidth: 0,
+        width: 40,
+        height: 40,
+        resizeMode: 'contain'
+    },
+    removeIcon: {
+        width: 25,
+        height: 25,
+        resizeMode: 'contain',
+    }
 });
 
 export default SoundList;

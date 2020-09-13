@@ -90,7 +90,7 @@ const AppWrapper = () => {
             {/* <Text style={styles.controlText}>{item.name}</Text> */}
             <Image
               style={styles.soundIcon}
-              source={require('./src/assets/images/rain.png')}
+              source={item.icon}
             />
             {item.player && <VolumeSlider item={item} />}
           </View>
@@ -111,15 +111,10 @@ const AppWrapper = () => {
 
 const styles = StyleSheet.create({
   controlCtnr: {
-    // borderWidth: 1,
     height: 130,
     flex: 1,
-    // margin: 10,
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    // alignContent: 'center',
-    borderColor: 'green',
-    // borderRadius: 10,
   },
   controlToggler: {
     textAlign: 'center'
@@ -135,7 +130,8 @@ const styles = StyleSheet.create({
     height: 40
   },
   soundIcon: {
-    width: 65, 
+    height: 65,
+    resizeMode: 'contain',
     alignSelf: 'center'
   }
 });
