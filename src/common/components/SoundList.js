@@ -27,6 +27,7 @@ const SoundList = (props) => {
                     <FlatList
                         data={soundContext.state.sounds}
                         keyExtractor={(item, index) => item.id}
+                        initialNumToRender={soundContext.state.sounds.length}
                         renderItem={({ item }) => {
                             if (item.player !== null) {
                                 return <View style={styles.listItem} >
@@ -43,8 +44,6 @@ const SoundList = (props) => {
                                         />
                                     </TouchableHighlight>
                                 </View>
-                            } else {
-                                return null
                             }
                         }}
                     />
