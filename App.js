@@ -16,9 +16,10 @@ import {
   StatusBar,
   TouchableHighlight,
   Image,
-  FlatList
+  FlatList,
+  Platform
 } from 'react-native';
-import { SOUNDS } from './src/common/constants';
+import { SOUNDS, admobBannerUnitId } from './src/common/constants';
 import MusicControl from 'react-native-music-control';
 import { AdMobBanner, AdMobInterstitial } from 'react-native-admob';
 import { SoundContext, SoundContextProvider } from './src/context/sound.context';
@@ -101,7 +102,7 @@ const AppWrapper = () => {
 
       <AdMobBanner
         adSize="smartBannerPortrait"
-        adUnitID="ca-app-pub-7653964150164042/7040498642"
+        adUnitID={Platform.OS === 'ios' ? admobBannerUnitId.IOS : admobBannerUnitId.ANDROID}
         didFailToReceiveAdWithError={onFailToRecieveAd}
       />
     </SafeAreaView>

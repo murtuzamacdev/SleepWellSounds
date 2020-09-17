@@ -5,7 +5,8 @@ export var SOUNDS = {
         name: 'Rain',
         volume: 0.5,
         icon: require('../assets/images/icons/rain.png'),
-        backgroundColor: '#45963B'
+        backgroundColor: '#45963B',
+        duration: 5387
     },
     THUNDER: {
         id: 'THUNDER',
@@ -13,7 +14,8 @@ export var SOUNDS = {
         name: 'Thunder',
         icon: require('../assets/images/icons/thunder.png'),
         volume: 0.5,
-        backgroundColor: '#74BB4C'
+        backgroundColor: '#74BB4C',
+        duration: 27272
     },
     RAIN_WINDOW: {
         id: 'RAIN_WINDOW',
@@ -21,7 +23,8 @@ export var SOUNDS = {
         name: 'Rain on windows',
         icon: require('../assets/images/icons/umbrella.png'),
         volume: 0.5,
-        backgroundColor: '#98CB80'
+        backgroundColor: '#98CB80',
+        duration: 5077
     },
     BIRDS: {
         id: 'BIRDS',
@@ -29,7 +32,8 @@ export var SOUNDS = {
         name: 'Birds',
         icon: require('../assets/images/icons/bird.png'),
         volume: 0.5,
-        backgroundColor: '#77B982'
+        backgroundColor: '#77B982',
+        duration: 6161
     },
     WIND: {
         id: 'WIND',
@@ -37,7 +41,8 @@ export var SOUNDS = {
         name: 'Wind',
         icon: require('../assets/images/icons/wind.png'),
         volume: 0.5,
-        backgroundColor: '#3C925B'
+        backgroundColor: '#3C925B',
+        duration: 9765
     },
     FLUTE: {
         id: 'FLUTE',
@@ -45,7 +50,8 @@ export var SOUNDS = {
         name: 'Flute',
         icon: require('../assets/images/icons/flute.png'),
         volume: 0.5,
-        backgroundColor: '#9CC7A5'
+        backgroundColor: '#9CC7A5',
+        duration: 40513
     },
     STREAM: {
         id: 'STREAM',
@@ -53,7 +59,8 @@ export var SOUNDS = {
         name: 'Stream',
         icon: require('../assets/images/icons/stream.png'),
         volume: 0.5,
-        backgroundColor: '#44AAAA'
+        backgroundColor: '#44AAAA',
+        duration: 5011
     },
     OM: {
         id: 'OM',
@@ -61,7 +68,8 @@ export var SOUNDS = {
         name: 'OM',
         icon: require('../assets/images/icons/mudra.png'),
         volume: 0.5,
-        backgroundColor: '#126DAB'
+        backgroundColor: '#126DAB',
+        duration: 8380
     },
     FIRE: {
         id: 'FIRE',
@@ -69,7 +77,8 @@ export var SOUNDS = {
         name: 'Fire',
         icon: require('../assets/images/icons/bonfire.png'),
         volume: 0.5,
-        backgroundColor: '#0D3D84'
+        backgroundColor: '#0D3D84',
+        duration: 5036
     },
     WAVES: {
         id: 'WAVES',
@@ -77,7 +86,8 @@ export var SOUNDS = {
         name: 'Waves',
         icon: require('../assets/images/icons/waves.png'),
         volume: 0.5,
-        backgroundColor: '#1C2239'
+        backgroundColor: '#1C2239',
+        duration: 6241
     },
     BOWL: {
         id: 'BOWL',
@@ -85,7 +95,8 @@ export var SOUNDS = {
         name: 'Bowl',
         icon: require('../assets/images/icons/bowl.png'),
         volume: 0.5,
-        backgroundColor: '#545488'
+        backgroundColor: '#545488',
+        duration: 6000
     },
     CRICKET: {
         id: 'CRICKET',
@@ -93,7 +104,8 @@ export var SOUNDS = {
         name: 'Cricket',
         icon: require('../assets/images/icons/night.png'),
         volume: 0.5,
-        backgroundColor: '#3A3387'
+        backgroundColor: '#3A3387',
+        duration: 4619
     },
     WHITE_NOISE_1: {
         id: 'WHITE_NOISE_1',
@@ -101,7 +113,8 @@ export var SOUNDS = {
         name: 'White Noise 1',
         icon: require('../assets/images/icons/whitenoisea.png'),
         volume: 0.5,
-        backgroundColor: '#68407c'
+        backgroundColor: '#68407c',
+        duration: 4922
     },
     
     WHITE_NOISE_2: {
@@ -110,7 +123,8 @@ export var SOUNDS = {
         name: 'White Noise 2',
         icon: require('../assets/images/icons/whitenoiseb.png'),
         volume: 0.5,
-        backgroundColor: '#251743'
+        backgroundColor: '#251743',
+        duration: 4789
     },
     FAN: {
         id: 'FAN',
@@ -118,7 +132,8 @@ export var SOUNDS = {
         name: 'Fan',
         icon: require('../assets/images/icons/fan.png'),
         volume: 0.5,
-        backgroundColor: '#311b46'
+        backgroundColor: '#311b46',
+        duration: 5004
     },
     CAR: {
         id: 'CAR',
@@ -126,6 +141,12 @@ export var SOUNDS = {
         name: 'Car',
         icon: require('../assets/images/icons/car.png'),
         volume: 0.5,
-        backgroundColor: '#190d25'
+        backgroundColor: '#190d25',
+        duration: 5091
     },
+}
+
+export const admobBannerUnitId = {
+    IOS: 'ca-app-pub-7653964150164042/7040498642',
+    ANDROID: 'ca-app-pub-7653964150164042/7455431619'
 }

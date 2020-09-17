@@ -32,6 +32,7 @@ export class SoundContextProvider extends Component {
 
     removeSound = (selectedSound) => {
         selectedSound.player.stop();
+        clearInterval(selectedSound.interval)
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = null;
@@ -48,10 +49,10 @@ export class SoundContextProvider extends Component {
             return (sound.player && sound.player.isPlaying) ? true : false
         })
 
-        this.setState({ 
+        this.setState({
             isAnySoundPlaying: isAnySoundSelected,
             playState: isSoundPlaying ? MusicControl.STATE_PLAYING : MusicControl.STATE_PAUSED
-         })
+        })
 
         if (isAnySoundSelected === undefined) {
             MusicControl.resetNowPlaying();
@@ -66,8 +67,16 @@ export class SoundContextProvider extends Component {
             autoDestroy: false,
             continuesToPlayInBackground: true
         });
-        selectedSound.player.looping = true;
-        selectedSound.player.play();
+        selectedSound.player.looping = false;
+
+        selectedSound.player.prepare(() => {
+            selectedSound.player.play();
+
+            selectedSound.interval = setInterval(() => {
+                selectedSound.player && selectedSound.player.seek(0)
+            }, selectedSound.duration);
+        })
+
         selectedSound.player.volume = 0.5;
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
@@ -128,7 +137,7 @@ export class SoundContextProvider extends Component {
         if (val === 'PLAY') {
             state = MusicControl.STATE_PLAYING;
             method = 'play';
-        }else {
+        } else {
             state = MusicControl.STATE_PAUSED;
             method = 'pause';
         }
