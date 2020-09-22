@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { SOUNDS } from '../common/constants';
+import { Platform } from 'react-native'
+import { SOUNDS, admobInterstitialUnitId } from '../common/constants';
 import MusicControl from 'react-native-music-control';
 import {
     Player,
     Recorder,
     MediaStates
 } from '@react-native-community/audio-toolkit';
+import AsyncStorage from '@react-native-community/async-storage';
+import { AdMobInterstitial } from 'react-native-admob';
 
 export const SoundContext = React.createContext();
 
@@ -28,6 +31,8 @@ export class SoundContextProvider extends Component {
         this.setState({
             sounds: _sounds
         })
+
+        AdMobInterstitial.setAdUnitID(Platform.OS === 'ios' ? admobInterstitialUnitId.IOS : admobInterstitialUnitId.ANDROID);
     }
 
     removeSound = (selectedSound) => {
@@ -62,7 +67,7 @@ export class SoundContextProvider extends Component {
         }
     }
 
-    addSound = (selectedSound) => {
+    addSound = async (selectedSound) => {
         selectedSound.player = new Player(`${selectedSound.fileName}`, {
             autoDestroy: false,
             continuesToPlayInBackground: true
@@ -85,12 +90,30 @@ export class SoundContextProvider extends Component {
             sounds: _sounds
         })
 
-        this.state.sounds.forEach((sound) => {
-            if (sound.player && sound.player.isPaused) {
-                sound.player.play()
-            }
-        })
+        // Show Interstitial Ad if conditions are met
+        let admobInterstitialCounter = await AsyncStorage.getItem('admobInterstitialCounter')
+        if (admobInterstitialCounter && parseInt(admobInterstitialCounter) >= 4) {
+            this.togglePlay('PAUSE');
+            AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+            AdMobInterstitial.addEventListener('adClosed', () => {
+                this.togglePlay('PLAY');
+            })
 
+            // set interstitial counter to 0
+            await AsyncStorage.setItem('admobInterstitialCounter', '0')
+        } else {
+            this.state.sounds.forEach((sound) => {
+                if (sound.player && sound.player.isPaused) {
+                    sound.player.play()
+                }
+            })
+
+            // update counter for interstitial app
+            let val = admobInterstitialCounter || '0';
+            val = parseInt(val) + 1;
+            await AsyncStorage.setItem('admobInterstitialCounter', val.toString())
+        }
+        
         this.setState({ isAnySoundPlaying: true, playState: MusicControl.STATE_PLAYING })
     }
 

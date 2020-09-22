@@ -21,7 +21,7 @@ import {
 } from 'react-native';
 import { SOUNDS, admobBannerUnitId } from './src/common/constants';
 import MusicControl from 'react-native-music-control';
-import { AdMobBanner, AdMobInterstitial } from 'react-native-admob';
+import { AdMobBanner } from 'react-native-admob';
 import { SoundContext, SoundContextProvider } from './src/context/sound.context';
 import SoundList from './src/common/components/SoundList';
 import VolumeSlider from './src/common/components/VolumeSlider';
@@ -42,10 +42,6 @@ const AppWrapper = () => {
 
   useEffect(() => {
     soundContext.initializeSounds();
-
-    // Show Interstitial Ad
-    // AdMobInterstitial.setAdUnitID('ca-app-pub-7653964150164042/1289478516');
-    // AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
   }, []);
 
   const onTap = (selectedSound) => {

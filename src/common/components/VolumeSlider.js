@@ -28,7 +28,7 @@ const VolumeSlider = (props) => {
 const styles = StyleSheet.create({
     controlVolumeSlider:
     {
-        width: 150,
+        width: '60%',
         height: 40,
         alignSelf: 'center'
     }
