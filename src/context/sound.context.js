@@ -9,6 +9,7 @@ import {
 } from '@react-native-community/audio-toolkit';
 import AsyncStorage from '@react-native-community/async-storage';
 import { AdMobInterstitial } from 'react-native-admob';
+import BackgroundTimer from 'react-native-background-timer';
 
 export const SoundContext = React.createContext();
 
@@ -37,7 +38,7 @@ export class SoundContextProvider extends Component {
 
     removeSound = (selectedSound) => {
         selectedSound.player.stop();
-        clearInterval(selectedSound.interval)
+        BackgroundTimer.clearInterval(selectedSound.interval);
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = null;
@@ -77,7 +78,8 @@ export class SoundContextProvider extends Component {
         selectedSound.player.prepare(() => {
             selectedSound.player.play();
 
-            selectedSound.interval = setInterval(() => {
+            selectedSound.interval = BackgroundTimer.setInterval(() => {
+                console.log(selectedSound.duration);
                 selectedSound.player && selectedSound.player.seek(0)
             }, selectedSound.duration);
         })

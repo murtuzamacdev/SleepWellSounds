@@ -271,6 +271,8 @@ PODS:
   - React-jsinspector (0.63.2)
   - react-native-admob (2.0.0-beta.6):
     - React
+  - react-native-background-timer (2.4.0):
+    - React
   - react-native-music-control (0.12.0):
     - React
   - react-native-slider (3.0.3):
@@ -382,6 +384,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-admob (from `../node_modules/react-native-admob`)
+  - react-native-background-timer (from `../node_modules/react-native-background-timer`)
   - react-native-music-control (from `../node_modules/react-native-music-control`)
   - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -452,6 +455,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-admob:
     :path: "../node_modules/react-native-admob"
+  react-native-background-timer:
+    :path: "../node_modules/react-native-background-timer"
   react-native-music-control:
     :path: "../node_modules/react-native-music-control"
   react-native-slider:
@@ -517,6 +522,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 8ca588cc921e70590820ce72b8789b02c67cce38
   React-jsinspector: b14e62ebe7a66e9231e9581279909f2fc3db6606
   react-native-admob: cb7f9e5e7d6f1e68bfbf1df8f72b2e23963bc7db
+  react-native-background-timer: e0384ea2fa5a98f67f84f9c4dc274260ddd674ed
   react-native-music-control: 4b5b6d76ea60c12241bcfcc0d6da26b7c0f50c89
   react-native-slider: b733e17fdd31186707146debf1f04b5d94aa1a93
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
