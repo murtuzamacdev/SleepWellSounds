@@ -58,8 +58,10 @@ const AppWrapper = () => {
         }
 
         MusicControl.setNowPlaying({
-          title: 'Sleep Well Sounds',
-          artist: 'Playing',
+          title: 'Sleep and Relax...',
+          notificationIcon: 'my_custom_icon',
+          artwork: require('./src/assets/images/appIcon.png')
+          // artist: 'Playing',
         })
 
         MusicControl.updatePlayback({
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
     height: 40
   },
   soundIcon: {
-    height: 65,
+    height: 60,
     resizeMode: 'contain',
     alignSelf: 'center'
   }
