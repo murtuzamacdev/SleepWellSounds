@@ -79,7 +79,6 @@ export class SoundContextProvider extends Component {
             selectedSound.player.play();
 
             selectedSound.interval = BackgroundTimer.setInterval(() => {
-                console.log(selectedSound.duration);
                 selectedSound.player && selectedSound.player.seek(0)
             }, selectedSound.duration);
         })
@@ -95,7 +94,7 @@ export class SoundContextProvider extends Component {
         // Show Interstitial Ad if conditions are met
         let admobInterstitialCounter = await AsyncStorage.getItem('admobInterstitialCounter')
         if (admobInterstitialCounter && parseInt(admobInterstitialCounter) >= 4) {
-            this.togglePlay('PAUSE');
+            // this.togglePlay('PAUSE');
             AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
             AdMobInterstitial.addEventListener('adClosed', () => {
                 this.togglePlay('PLAY');
