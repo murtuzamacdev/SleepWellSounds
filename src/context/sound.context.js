@@ -17,6 +17,7 @@ export class SoundContextProvider extends Component {
     state = {
         sounds: [],
         playState: MusicControl.STATE_STOPPED,
+        selectedTimer: { label: 'No Timer', value: 'NO_TIMER' },
         showSoundListModal: false,
         isAnySoundPlaying: undefined,
         showTimerPopup: false
@@ -182,6 +183,12 @@ export class SoundContextProvider extends Component {
         })
     }
 
+    updateTimer = (item) => {
+        this.setState({
+            selectedTimer: item
+        })
+    }
+
     render() {
         return (
             <SoundContext.Provider
@@ -195,7 +202,8 @@ export class SoundContextProvider extends Component {
                     onVolumeChange: this.onVolumeChange,
                     checkSoundMaxLimit: this.checkSoundMaxLimit,
                     setShowSoundListModal: this.setShowSoundListModal,
-                    setShowTimerPopup: this.setShowTimerPopup
+                    setShowTimerPopup: this.setShowTimerPopup,
+                    updateTimer: this.updateTimer
                 }}>
                 {this.props.children}
             </SoundContext.Provider>

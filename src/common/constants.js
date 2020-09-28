@@ -116,7 +116,7 @@ export var SOUNDS = {
         backgroundColor: '#68407c',
         duration: 4922
     },
-    
+
     WHITE_NOISE_2: {
         id: 'STREAM1',
         fileName: 'whitenoiseb.wav',
@@ -145,6 +145,21 @@ export var SOUNDS = {
         duration: 40513
     }
 }
+
+export const timerOptions = [
+    { label: 'No Timer', value: 'NO_TIMER' },
+    { label: 'Custom Duration', value: 'CUSTOM' },
+    { label: '5 Minutes', value: 5 },
+    { label: '10 Minutes', value: 10 },
+    { label: '15 Minutes', value: 15 },
+    { label: '20 Minutes', value: 20 },
+    { label: '30 Minutes', value: 30 },
+    { label: '40 Minutes', value: 40 },
+    { label: '1 Hour', value: 60 },
+    { label: '2 Hours', value: 120 },
+    { label: '4 Hours', value: 240 },
+    { label: '8 Hours', value: 480 },
+]
 
 // Prod
 export const admobBannerUnitId = {
