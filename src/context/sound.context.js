@@ -18,7 +18,8 @@ export class SoundContextProvider extends Component {
         sounds: [],
         playState: MusicControl.STATE_STOPPED,
         showSoundListModal: false,
-        isAnySoundPlaying: undefined
+        isAnySoundPlaying: undefined,
+        showTimerPopup: false
     }
 
     initializeSounds = () => {
@@ -156,6 +157,10 @@ export class SoundContextProvider extends Component {
         this.setState({ showSoundListModal: val })
     }
 
+    setShowTimerPopup = (val) => {
+        this.setState({ showTimerPopup: val })
+    }
+
     togglePlay = (val) => {
         let state, method;
         if (val === 'PLAY') {
@@ -189,7 +194,8 @@ export class SoundContextProvider extends Component {
                     togglePlay: this.togglePlay,
                     onVolumeChange: this.onVolumeChange,
                     checkSoundMaxLimit: this.checkSoundMaxLimit,
-                    setShowSoundListModal: this.setShowSoundListModal
+                    setShowSoundListModal: this.setShowSoundListModal,
+                    setShowTimerPopup: this.setShowTimerPopup
                 }}>
                 {this.props.children}
             </SoundContext.Provider>

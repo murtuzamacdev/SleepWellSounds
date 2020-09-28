@@ -27,6 +27,10 @@ const FloatingControls = (props) => {
     const showSoundList = () => {
         soundContext.setShowSoundListModal(true)
     }
+    
+    const openTimerPopup = () => {
+        soundContext.setShowTimerPopup(true);
+    }
 
     return (<View style={styles.container}>
         <TouchableHighlight
@@ -39,6 +43,14 @@ const FloatingControls = (props) => {
                     style={styles.icons}
                     source={require('../../assets/images/icons/play.png')}
                 />}
+        </TouchableHighlight>
+        <TouchableHighlight
+            style={styles.buttons}
+            onPress={() => openTimerPopup()}>
+            <Image
+                style={styles.icons}
+                source={require('../../assets/images/icons/timer.png')}
+            />
         </TouchableHighlight>
         <TouchableHighlight
             style={styles.buttons}

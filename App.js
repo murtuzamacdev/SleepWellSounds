@@ -26,6 +26,7 @@ import { SoundContext, SoundContextProvider } from './src/context/sound.context'
 import SoundList from './src/common/components/SoundList';
 import VolumeSlider from './src/common/components/VolumeSlider';
 import FloatingControls from './src/common/components/FloatingControls';
+import TimerOptions from './src/common/components/TimerOptions';
 import Toast from 'react-native-toast-message'
 
 const App: () => React$Node = () => {
@@ -102,6 +103,7 @@ const AppWrapper = () => {
       />
       {soundContext.state.isAnySoundPlaying !== undefined && <FloatingControls />}
       {soundContext.state.isAnySoundPlaying !== undefined && <SoundList />}
+      <TimerOptions/>
 
       <AdMobBanner
         adSize="smartBannerPortrait"
