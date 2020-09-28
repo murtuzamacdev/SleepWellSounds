@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
         width: '90%',
-        maxHeight: '80%'
+        maxHeight: '95%'
 
     },
     closeBtn: {
@@ -91,11 +91,11 @@ const styles = StyleSheet.create({
     },
     listItem: {
         flexDirection: 'row',
-        width: 300,
+        width: 270,
         justifyContent: "flex-start",
         alignItems: "center",
         flex: 1,
-        height: 50
+        height: 45
         // borderWidth: 1,
         // width: '100%',
         // marginBottom: 30
@@ -122,9 +122,9 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 25
+        marginBottom: 10
     }
 });
 

@@ -10,6 +10,7 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import { AdMobInterstitial } from 'react-native-admob';
 import BackgroundTimer from 'react-native-background-timer';
+import Toast from 'react-native-toast-message'
 
 export const SoundContext = React.createContext();
 
@@ -18,6 +19,7 @@ export class SoundContextProvider extends Component {
         sounds: [],
         playState: MusicControl.STATE_STOPPED,
         selectedTimer: { label: 'No Timer', value: 'NO_TIMER' },
+        setTimeoutVar: null,
         showSoundListModal: false,
         isAnySoundPlaying: undefined,
         showTimerPopup: false
@@ -116,7 +118,7 @@ export class SoundContextProvider extends Component {
             val = parseInt(val) + 1;
             await AsyncStorage.setItem('admobInterstitialCounter', val.toString())
         }
-        
+
         this.setState({ isAnySoundPlaying: true, playState: MusicControl.STATE_PLAYING })
     }
 
@@ -186,6 +188,24 @@ export class SoundContextProvider extends Component {
     updateTimer = (item) => {
         this.setState({
             selectedTimer: item
+        })
+        
+        BackgroundTimer.clearTimeout(this.state.setTimeoutVar);
+        let setTimeoutVar = null;
+
+        if (item.value !== 'NO_TIMER') {
+            setTimeoutVar = BackgroundTimer.setTimeout(() => {
+                this.togglePlay('PAUSE');
+                this.setState({ selectedTimer: { label: 'No Timer', value: 'NO_TIMER' }, })
+            }, item.value);
+        }
+
+        this.setState({ setTimeoutVar: setTimeoutVar });
+        this.setShowTimerPopup(false);
+        Toast.show({
+            type: 'success',
+            text1: 'Timer set',
+            text2: `Timer is set to ${item.label}`
         })
     }
 
