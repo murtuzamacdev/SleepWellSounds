@@ -149,7 +149,7 @@ export class SoundContextProvider extends Component {
             return (sound.player ? true : false);
         })
 
-        return (playingSound.length <= 8 ? true : false)
+        return (playingSound.length < 10 ? true : false)
     }
 
     setShowSoundListModal = (val) => {

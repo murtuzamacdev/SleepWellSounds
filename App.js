@@ -26,6 +26,7 @@ import { SoundContext, SoundContextProvider } from './src/context/sound.context'
 import SoundList from './src/common/components/SoundList';
 import VolumeSlider from './src/common/components/VolumeSlider';
 import FloatingControls from './src/common/components/FloatingControls';
+import Toast from 'react-native-toast-message'
 
 const App: () => React$Node = () => {
 
@@ -68,7 +69,11 @@ const AppWrapper = () => {
           state: MusicControl.STATE_PLAYING
         })
       } else {
-        alert('Max limit reached.')
+        Toast.show({
+          type: 'error',
+          text1: 'Max limit reached',
+          text2: '10 sounds can be played at a time',
+        })
       }
     }
   }
@@ -103,6 +108,7 @@ const AppWrapper = () => {
         adUnitID={Platform.OS === 'ios' ? admobBannerUnitId.IOS : admobBannerUnitId.ANDROID}
         didFailToReceiveAdWithError={onFailToRecieveAd}
       />
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </SafeAreaView>
   </>);
 }
