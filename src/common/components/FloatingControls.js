@@ -27,7 +27,7 @@ const FloatingControls = (props) => {
     const showSoundList = () => {
         soundContext.setShowSoundListModal(true)
     }
-    
+
     const openTimerPopup = () => {
         soundContext.setShowTimerPopup(true);
     }
@@ -47,10 +47,14 @@ const FloatingControls = (props) => {
         <TouchableHighlight
             style={styles.buttons}
             onPress={() => openTimerPopup()}>
-            <Image
-                style={styles.icons}
-                source={require('../../assets/images/icons/timer.png')}
-            />
+            <View style={styles.timerCtnr}>
+                <Image
+                    style={[styles.icons, styles.timerIcon]}
+                    source={require('../../assets/images/icons/timer.png')}
+                />
+                {soundContext.state.selectedTimer.value !== 'NO_TIMER' && <Text style={styles.timerText}>{soundContext.state.timerCountdown}</Text>}
+            </View>
+
         </TouchableHighlight>
         <TouchableHighlight
             style={styles.buttons}
@@ -88,6 +92,18 @@ const styles = StyleSheet.create({
         height: 30,
         resizeMode: 'contain',
         alignSelf: 'center'
+    },
+    timerCtnr: {
+        flexDirection: 'row',
+        // borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    timerIcon: {
+        marginRight: 10
+    },
+    timerText: {
+        fontSize: 17
     }
 });
 

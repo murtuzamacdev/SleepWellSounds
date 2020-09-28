@@ -18,11 +18,14 @@ export class SoundContextProvider extends Component {
     state = {
         sounds: [],
         playState: MusicControl.STATE_STOPPED,
-        selectedTimer: { label: 'No Timer', value: 'NO_TIMER' },
-        setTimeoutVar: null,
         showSoundListModal: false,
         isAnySoundPlaying: undefined,
-        showTimerPopup: false
+        showTimerPopup: false,
+        // Timer variables
+        selectedTimer: { label: 'No Timer', value: 'NO_TIMER' },
+        timeoutObj: null,
+        timerCountdown: null,
+        timerCountdownIntervalObj: null
     }
 
     initializeSounds = () => {
@@ -189,24 +192,64 @@ export class SoundContextProvider extends Component {
         this.setState({
             selectedTimer: item
         })
-        
-        BackgroundTimer.clearTimeout(this.state.setTimeoutVar);
-        let setTimeoutVar = null;
+
+        BackgroundTimer.clearTimeout(this.state.timeoutObj);
+        BackgroundTimer.clearInterval(this.state.timerCountdownIntervalObj);
+        let timeoutObj = null;
 
         if (item.value !== 'NO_TIMER') {
-            setTimeoutVar = BackgroundTimer.setTimeout(() => {
+            timeoutObj = BackgroundTimer.setTimeout(() => {
                 this.togglePlay('PAUSE');
                 this.setState({ selectedTimer: { label: 'No Timer', value: 'NO_TIMER' }, })
             }, item.value);
+
+            this.setTimerCountdown(item.value)
         }
 
-        this.setState({ setTimeoutVar: setTimeoutVar });
+        this.setState({ timeoutObj: timeoutObj });
         this.setShowTimerPopup(false);
         Toast.show({
             type: 'success',
             text1: 'Timer set',
             text2: `Timer is set to ${item.label}`
         })
+    }
+
+    setTimerCountdown = (millis) => {
+        var oldDateObj = new Date();
+        var newDateObj = new Date();
+        newDateObj.setTime(oldDateObj.getTime() + ((millis / 60000) * 60 * 1000));
+        var countDownDate = newDateObj.getTime();
+
+        // Update the count down every 1 second
+        var x = BackgroundTimer.setInterval(() => {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            let str = (hours!== 0 ? hours + "h " : '') + 
+            (minutes!== 0 ? minutes + "m " : '') + 
+                seconds + "s ";
+
+            this.setState({ timerCountdown: str })
+
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                BackgroundTimer.clearInterval(this.state.timerCountdownIntervalObj);
+            }
+        }, 1000);
+
+        this.setState({ timerCountdownIntervalObj: x })
     }
 
     render() {

@@ -155,7 +155,7 @@ export const timerOptions = [
     { label: '15 Minutes', value: 900000 },
     { label: '20 Minutes', value: 1200000 },
     { label: '30 Minutes', value: 1800000 },
-    // { label: '40 Minutes', value: 2400000 },
+    { label: '40 Minutes', value: 2400000 },
     { label: '1 Hour', value: 3600000 },
     { label: '2 Hours', value: 7200000 },
     { label: '4 Hours', value: 14400000 },
