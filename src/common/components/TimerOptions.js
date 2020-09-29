@@ -8,7 +8,8 @@ import {
     FlatList,
     TouchableHighlight,
     TouchableOpacity,
-    Image
+    Image,
+    Platform
 } from "react-native";
 import { SoundContext } from '../../context/sound.context';
 import { timerOptions } from '../constants'
@@ -18,9 +19,10 @@ const TimerOptions = () => {
 
     return (<View style={styles.centeredView}>
         <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             visible={soundContext.state.showTimerPopup}
+            onRequestClose={() => { soundContext.setShowTimerPopup(false) }}
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
@@ -44,14 +46,13 @@ const TimerOptions = () => {
                             </TouchableHighlight>
                         }}
                     />
-                    <TouchableOpacity
+                    {Platform.OS === 'ios' && <TouchableOpacity
                         style={styles.closeBtn}
                         onPress={() => {
                             soundContext.setShowTimerPopup(!soundContext.state.showTimerPopup)
-                        }}
-                    >
+                        }}>
                         <Text style={styles.textStyle}>Close</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>}
                 </View>
             </View>
         </Modal>
@@ -82,12 +83,6 @@ const styles = StyleSheet.create({
         width: '90%',
         maxHeight: '95%'
 
-    },
-    closeBtn: {
-        marginTop: 15,
-        backgroundColor: "transparent",
-        borderRadius: 20,
-        elevation: 0
     },
     listItem: {
         flexDirection: 'row',
@@ -132,7 +127,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 10
+        marginBottom: 20
     }
 });
 

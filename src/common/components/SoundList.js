@@ -18,9 +18,10 @@ const SoundList = (props) => {
 
     return (<View style={styles.centeredView}>
         <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             visible={soundContext.state.showSoundListModal}
+            onRequestClose={() => {soundContext.setShowSoundListModal(false)}}
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
@@ -48,14 +49,13 @@ const SoundList = (props) => {
                         }}
                     />
 
-                    <TouchableOpacity
+                    {Platform.OS === 'ios' && <TouchableOpacity
                         style={styles.closeBtn}
                         onPress={() => {
                             soundContext.setShowSoundListModal(!soundContext.state.showSoundListModal)
-                        }}
-                    >
+                        }}>
                         <Text style={styles.textStyle}>Close</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>}
                 </View>
             </View>
         </Modal>
