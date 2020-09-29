@@ -17,7 +17,8 @@ import {
   TouchableHighlight,
   Image,
   FlatList,
-  Platform
+  Platform,
+  Dimensions
 } from 'react-native';
 import { SOUNDS, admobBannerUnitId } from './src/common/constants';
 import MusicControl from 'react-native-music-control';
@@ -85,12 +86,12 @@ const AppWrapper = () => {
 
   return (<>
     <StatusBar barStyle="dark-content" />
-    <SafeAreaView style={{ height: '100%' }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <FlatList
         data={soundContext.state.sounds}
         numColumns={2}
         keyExtractor={(item, index) => item.id}
-        renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={[styles.controlCtnr, {backgroundColor: item.backgroundColor}]} >
+        renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={[styles.controlCtnr, { backgroundColor: item.backgroundColor }]} >
           <View style={styles.controlToggler}>
             {/* <Text style={styles.controlText}>{item.name}</Text> */}
             <Image
@@ -103,7 +104,7 @@ const AppWrapper = () => {
       />
       {soundContext.state.isAnySoundPlaying !== undefined && <FloatingControls />}
       {soundContext.state.isAnySoundPlaying !== undefined && <SoundList />}
-      <TimerOptions/>
+      <TimerOptions />
 
       <AdMobBanner
         adSize="smartBannerPortrait"
@@ -115,10 +116,11 @@ const AppWrapper = () => {
   </>);
 }
 
+const windowW = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   controlCtnr: {
-    height: 130,
+    height: windowW/3,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-evenly',
@@ -137,7 +139,7 @@ const styles = StyleSheet.create({
     height: 40
   },
   soundIcon: {
-    height: 60,
+    height: windowW/6,
     resizeMode: 'contain',
     alignSelf: 'center'
   }
