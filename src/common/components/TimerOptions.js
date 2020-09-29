@@ -32,8 +32,8 @@ const TimerOptions = () => {
                         renderItem={({ item }) => {
                             return <TouchableHighlight
                                 onPress={() => soundContext.updateTimer(item)}>
-                                <View style={styles.listItem}>
-                                    <View style={{ width: 25, marginRight: 20 }}>
+                                <View style={[styles.listItem, item.value === soundContext.state.selectedTimer.value && styles.selectedListItem]}>
+                                    <View style={styles.checkIconCtrn}>
                                         {item.value === soundContext.state.selectedTimer.value && <Image
                                             style={styles.checkIcon}
                                             source={require('../../assets/images/icons/check_circle.png')}
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         // marginTop: 22
     },
     modalView: {
-        paddingTop: 35,
+        paddingTop: 25,
         paddingBottom: 25,
         borderRadius: 20,
         backgroundColor: 'grey',
@@ -91,14 +91,18 @@ const styles = StyleSheet.create({
     },
     listItem: {
         flexDirection: 'row',
-        width: 270,
+        width: 250,
         justifyContent: "flex-start",
         alignItems: "center",
         flex: 1,
-        height: 45
-        // borderWidth: 1,
-        // width: '100%',
-        // marginBottom: 30
+        height: 50,
+        marginRight: 15,
+        paddingLeft: 15
+    },
+    selectedListItem: {
+        borderWidth: 1,
+        borderColor: 'white',
+        borderRadius: 10
     },
     textStyle: {
         color: "white",
@@ -114,11 +118,15 @@ const styles = StyleSheet.create({
     selectedText: {
         fontWeight: 'bold'
     },
+    checkIconCtrn: {
+        width: 22,
+        marginRight: 15,
+        // marginLeft: 10
+    },
     checkIcon: {
-        width: 25,
-        height: 25,
+        width: 22,
+        height: 22,
         resizeMode: 'contain',
-
     },
     title: {
         color: 'white',

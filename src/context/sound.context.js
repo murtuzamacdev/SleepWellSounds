@@ -221,27 +221,19 @@ export class SoundContextProvider extends Component {
         newDateObj.setTime(oldDateObj.getTime() + ((millis / 60000) * 60 * 1000));
         var countDownDate = newDateObj.getTime();
 
+
+        var newDateObj1 = new Date();
+        newDateObj1.setTime(oldDateObj.getTime() + (((millis - 1000) / 60000) * 60 * 1000));
+        var countDownDate1 = newDateObj1.getTime();
+        let now1 = oldDateObj.getTime();
+        let distance1 = countDownDate1 - now1;
+        this.calculateTime(distance1);
+
         // Update the count down every 1 second
         var x = BackgroundTimer.setInterval(() => {
-
-            // Get today's date and time
             var now = new Date().getTime();
-
-            // Find the distance between now and the count down date
             var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in an element with id="demo"
-            let str = (hours!== 0 ? hours + "h " : '') + 
-            (minutes!== 0 ? minutes + "m " : '') + 
-                seconds + "s ";
-
-            this.setState({ timerCountdown: str })
+            this.calculateTime(distance);
 
             // If the count down is over, write some text 
             if (distance < 0) {
@@ -250,6 +242,21 @@ export class SoundContextProvider extends Component {
         }, 1000);
 
         this.setState({ timerCountdownIntervalObj: x })
+    }
+
+    calculateTime = (distance) => {
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        let str = (hours !== 0 ? hours + "h " : '') +
+            (minutes !== 0 ? minutes + "m " : '') +
+            seconds + "s ";
+
+        this.setState({ timerCountdown: str })
     }
 
     render() {
