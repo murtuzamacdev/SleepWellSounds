@@ -126,7 +126,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   controlToggler: {
-    textAlign: 'center'
+    textAlign: 'center',
+    height: windowW/3,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
   },
   controlText: {
     color: 'white',

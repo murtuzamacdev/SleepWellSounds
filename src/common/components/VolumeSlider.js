@@ -21,6 +21,7 @@ const VolumeSlider = (props) => {
         maximumValue={1}
         minimumTrackTintColor="lightgrey"
         maximumTrackTintColor="#000000"
+        thumbTintColor="white"
         onValueChange={(volume) => { soundContext.onVolumeChange(props.item.id, volume) }}
     />);
 }
