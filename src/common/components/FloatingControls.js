@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     View,
     FlatList,
-    Image
+    Image,
+    Dimensions
 } from "react-native";
 import { SoundContext } from '../../context/sound.context';
 import MusicControl from 'react-native-music-control';
@@ -59,10 +60,14 @@ const FloatingControls = (props) => {
         <TouchableHighlight
             style={styles.buttons}
             onPress={() => showSoundList()}>
-            <Image
-                style={styles.icons}
-                source={require('../../assets/images/icons/sounds.png')}
-            />
+            <View style={styles.timerCtnr}>
+                <Image
+                    s style={[styles.icons]}
+                    source={require('../../assets/images/icons/sounds.png')}
+                />
+                <Text style={styles.badge}>{soundContext.state.selectedSoundBadge}</Text>
+            </View>
+
         </TouchableHighlight>
     </View>);
 }
@@ -104,6 +109,18 @@ const styles = StyleSheet.create({
     },
     timerText: {
         fontSize: 17
+    },
+    badge:{
+        fontSize: 12,
+        color: 'black',
+        width: 21,
+        height: 22,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        marginLeft: 5,
+        position: 'absolute',
+        top: 16,
+        right: Dimensions.get('window').width/11
     }
 });
 

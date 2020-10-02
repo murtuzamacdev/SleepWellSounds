@@ -21,6 +21,7 @@ export class SoundContextProvider extends Component {
         showSoundListModal: false,
         isAnySoundPlaying: undefined,
         showTimerPopup: false,
+        selectedSoundBadge: 0,
         // Timer variables
         selectedTimer: { label: 'No Timer', value: 'NO_TIMER' },
         timeoutObj: null,
@@ -64,7 +65,8 @@ export class SoundContextProvider extends Component {
 
         this.setState({
             isAnySoundPlaying: isAnySoundSelected,
-            playState: isSoundPlaying ? MusicControl.STATE_PLAYING : MusicControl.STATE_PAUSED
+            playState: isSoundPlaying ? MusicControl.STATE_PLAYING : MusicControl.STATE_PAUSED,
+            selectedSoundBadge: this.state.selectedSoundBadge - 1
         })
 
         if (isAnySoundSelected === undefined) {
@@ -87,7 +89,7 @@ export class SoundContextProvider extends Component {
 
             selectedSound.interval = BackgroundTimer.setInterval(() => {
                 selectedSound.player && selectedSound.player.seek(0)
-            }, selectedSound.duration);
+            }, selectedSound.player.duration);
         })
 
         selectedSound.player.volume = 0.5;
@@ -95,7 +97,8 @@ export class SoundContextProvider extends Component {
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = selectedSound.player;
         this.setState({
-            sounds: _sounds
+            sounds: _sounds,
+            selectedSoundBadge: this.state.selectedSoundBadge + 1
         })
 
         // Show Interstitial Ad if conditions are met
