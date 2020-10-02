@@ -28,7 +28,8 @@ import SoundList from './src/common/components/SoundList';
 import VolumeSlider from './src/common/components/VolumeSlider';
 import FloatingControls from './src/common/components/FloatingControls';
 import TimerOptions from './src/common/components/TimerOptions';
-import Toast from 'react-native-toast-message'
+import Toast from 'react-native-toast-message';
+import RNBootSplash from "react-native-bootsplash";
 
 const App: () => React$Node = () => {
 
@@ -45,6 +46,10 @@ const AppWrapper = () => {
 
   useEffect(() => {
     soundContext.initializeSounds();
+    setTimeout(() => {
+      RNBootSplash.hide({ duration: 250 });  
+    }, 1000);
+    
   }, []);
 
   const onTap = (selectedSound) => {
