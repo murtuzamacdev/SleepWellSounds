@@ -19,6 +19,7 @@ export class SoundContextProvider extends Component {
         sounds: [],
         playState: MusicControl.STATE_STOPPED,
         showSoundListModal: false,
+        showAddToFavModal: false,
         isAnySoundPlaying: undefined,
         showTimerPopup: false,
         selectedSoundBadge: 0,
@@ -50,7 +51,7 @@ export class SoundContextProvider extends Component {
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = null;
-        _sounds[selectedSoundIndex].volume = 0.5
+        // _sounds[selectedSoundIndex].volume = 0.5
         this.setState({
             sounds: _sounds
         })
@@ -92,7 +93,7 @@ export class SoundContextProvider extends Component {
             }, selectedSound.player.duration);
         })
 
-        selectedSound.player.volume = 0.5;
+        selectedSound.player.volume = selectedSound.volume;
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = selectedSound.player;
@@ -218,6 +219,10 @@ export class SoundContextProvider extends Component {
         })
     }
 
+    setShowAddToFavModal = (val) => {
+        this.setState({ showAddToFavModal: val })
+    }
+
     setTimerCountdown = (millis) => {
         var oldDateObj = new Date();
         var newDateObj = new Date();
@@ -275,6 +280,7 @@ export class SoundContextProvider extends Component {
                     onVolumeChange: this.onVolumeChange,
                     checkSoundMaxLimit: this.checkSoundMaxLimit,
                     setShowSoundListModal: this.setShowSoundListModal,
+                    setShowAddToFavModal: this.setShowAddToFavModal,
                     setShowTimerPopup: this.setShowTimerPopup,
                     updateTimer: this.updateTimer
                 }}>

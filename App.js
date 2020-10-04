@@ -30,13 +30,43 @@ import FloatingControls from './src/common/components/FloatingControls';
 import TimerOptions from './src/common/components/TimerOptions';
 import Toast from 'react-native-toast-message';
 import RNBootSplash from "react-native-bootsplash";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Favourites from './src/pages/Favourites';
+import AddToFav from './src/common/components/AddToFav'
+
+const Stack = createStackNavigator();
 
 const App: () => React$Node = () => {
 
   return (
-    <SoundContextProvider>
-      <AppWrapper />
-    </SoundContextProvider>
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <SoundContextProvider>
+
+            <Stack.Navigator initialRouteName="Home">
+              <Stack.Screen
+                name="Home"
+                component={AppWrapper}
+                options={{
+                  headerShown: false
+                }}
+              />
+              <Stack.Screen
+                name="Favourites"
+                component={Favourites}
+                options={{
+                  headerShown: false
+                }} />
+            </Stack.Navigator>
+
+          </SoundContextProvider>
+        </NavigationContainer>
+      </SafeAreaView>
+
+    </>
   );
 };
 
@@ -47,9 +77,9 @@ const AppWrapper = () => {
   useEffect(() => {
     soundContext.initializeSounds();
     setTimeout(() => {
-      RNBootSplash.hide({ duration: 250 });  
+      RNBootSplash.hide({ duration: 250 });
     }, 1000);
-    
+
   }, []);
 
   const onTap = (selectedSound) => {
@@ -90,15 +120,14 @@ const AppWrapper = () => {
   }
 
   return (<>
-    <StatusBar barStyle="dark-content" />
-    <SafeAreaView style={{ flex: 1 }}>
+    {/* <StatusBar barStyle="dark-content" /> */}
+    <View style={{ flex: 1 }}>
       <FlatList
         data={soundContext.state.sounds}
         numColumns={2}
         keyExtractor={(item, index) => item.id}
         renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={[styles.controlCtnr, { backgroundColor: item.backgroundColor }]} >
           <View style={styles.controlToggler}>
-            {/* <Text style={styles.controlText}>{item.name}</Text> */}
             <Image
               style={styles.soundIcon}
               source={item.icon}
@@ -110,6 +139,7 @@ const AppWrapper = () => {
       {soundContext.state.isAnySoundPlaying !== undefined && <FloatingControls />}
       {soundContext.state.isAnySoundPlaying !== undefined && <SoundList />}
       <TimerOptions />
+      <AddToFav />
 
       <AdMobBanner
         adSize="smartBannerPortrait"
@@ -117,7 +147,7 @@ const AppWrapper = () => {
         didFailToReceiveAdWithError={onFailToRecieveAd}
       />
       <Toast ref={(ref) => Toast.setRef(ref)} />
-    </SafeAreaView>
+    </View>
   </>);
 }
 
@@ -125,14 +155,14 @@ const windowW = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   controlCtnr: {
-    height: windowW/3,
+    height: windowW / 3,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-evenly',
   },
   controlToggler: {
     textAlign: 'center',
-    height: windowW/3,
+    height: windowW / 3,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-evenly',
@@ -148,7 +178,7 @@ const styles = StyleSheet.create({
     height: 40
   },
   soundIcon: {
-    height: windowW/6,
+    height: windowW / 6,
     resizeMode: 'contain',
     alignSelf: 'center'
   }

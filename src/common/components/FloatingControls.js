@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useNavigation } from '@react-navigation/native';
 import {
     Alert,
     Modal,
@@ -15,6 +16,7 @@ import { SoundContext } from '../../context/sound.context';
 import MusicControl from 'react-native-music-control';
 
 const FloatingControls = (props) => {
+    const navigation = useNavigation();
     const soundContext = useContext(SoundContext);
 
     const togglePlay = () => {
@@ -69,6 +71,17 @@ const FloatingControls = (props) => {
             </View>
 
         </TouchableHighlight>
+        <TouchableHighlight
+            style={styles.buttons}
+            onPress={() => navigation.navigate('Favourites')}>
+            <View style={styles.timerCtnr}>
+                <Image
+                    style={[styles.icons]}
+                    source={require('../../assets/images/icons/favourite.png')}
+                />
+            </View>
+
+        </TouchableHighlight>
     </View>);
 }
 
@@ -110,7 +123,7 @@ const styles = StyleSheet.create({
     timerText: {
         fontSize: 17
     },
-    badge:{
+    badge: {
         fontSize: 12,
         color: 'black',
         width: 21,
@@ -120,7 +133,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         position: 'absolute',
         top: 16,
-        right: Dimensions.get('window').width/11
+        right: Dimensions.get('window').width / 21
     }
 });
 

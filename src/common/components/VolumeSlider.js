@@ -16,7 +16,7 @@ const VolumeSlider = (props) => {
 
     return (<Slider
         style={styles.controlVolumeSlider}
-        value={props.item.player.volume}
+        value={props.item.volume}
         minimumValue={0}
         maximumValue={1}
         minimumTrackTintColor="lightgrey"

@@ -275,6 +275,8 @@ PODS:
     - React
   - react-native-music-control (0.12.0):
     - React
+  - react-native-safe-area-context (3.1.8):
+    - React-Core
   - react-native-slider (3.0.3):
     - React
   - React-RCTActionSheet (0.63.2):
@@ -343,6 +345,14 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.12.0):
     - React
+  - RNCMaskedView (0.1.10):
+    - React
+  - RNGestureHandler (1.8.0):
+    - React
+  - RNReanimated (1.13.1):
+    - React
+  - RNScreens (2.11.0):
+    - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -388,6 +398,7 @@ DEPENDENCIES:
   - react-native-admob (from `../node_modules/react-native-admob`)
   - react-native-background-timer (from `../node_modules/react-native-background-timer`)
   - react-native-music-control (from `../node_modules/react-native-music-control`)
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -402,6 +413,10 @@ DEPENDENCIES:
   - "ReactNativeAudioToolkit (from `../node_modules/@react-native-community/audio-toolkit`)"
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -462,6 +477,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-background-timer"
   react-native-music-control:
     :path: "../node_modules/react-native-music-control"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   react-native-slider:
     :path: "../node_modules/@react-native-community/slider"
   React-RCTActionSheet:
@@ -490,6 +507,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-bootsplash"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
+  RNCMaskedView:
+    :path: "../node_modules/@react-native-community/masked-view"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -529,6 +554,7 @@ SPEC CHECKSUMS:
   react-native-admob: cb7f9e5e7d6f1e68bfbf1df8f72b2e23963bc7db
   react-native-background-timer: e0384ea2fa5a98f67f84f9c4dc274260ddd674ed
   react-native-music-control: 4b5b6d76ea60c12241bcfcc0d6da26b7c0f50c89
+  react-native-safe-area-context: 01158a92c300895d79dee447e980672dc3fb85a6
   react-native-slider: b733e17fdd31186707146debf1f04b5d94aa1a93
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
@@ -543,6 +569,10 @@ SPEC CHECKSUMS:
   ReactNativeAudioToolkit: e3e27fbcd12080f54f8715c54de7a232d3beb98d
   RNBootSplash: 8e1c140f46302328acb4f781ad835a0fa50b6c5a
   RNCAsyncStorage: 3eea36d9460c5159b592f9ecbe5a77f8aca98006
+  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
+  RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
+  RNReanimated: dd8c286ab5dd4ba36d3a7fef8bff7e08711b5476
+  RNScreens: 0e91da98ab26d5d04c7b59a9b6bd694124caf88c
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
