@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
     Modal,
     StyleSheet,
@@ -10,38 +10,56 @@ import {
 } from "react-native";
 import { SoundContext } from '../../context/sound.context';
 import AsyncStorage from '@react-native-community/async-storage';
+import Toast from 'react-native-toast-message';
 
 const AddToFav = (props) => {
     const soundContext = useContext(SoundContext);
     const [value, onChangeText] = React.useState('');
 
-    const onSave = async (params) => {
-        onChangeText('');
-        let activeSounds = soundContext.state.sounds.filter((sound) => sound.player !== null);
-        console.log(activeSounds)
-        let favsArr = JSON.parse(await AsyncStorage.getItem('favs'));
-        favsArr = favsArr || [];
-        let fav = {
-            [value]: activeSounds
-        }
+    useEffect(() => {
+        // Focus on text input for Android
+    }, []);
 
-        console.log('fav :>> ', fav);
-        soundContext.setShowAddToFavModal(!soundContext.state.showAddToFavModal)
+    const onSave = async () => {
+        let index = props.favs.findIndex((_item) => Object.keys(_item)[0] === value);
+
+        // Check if the name already exists
+        if (index === -1) {
+            onChangeText('');
+            let activeSounds = soundContext.state.sounds.filter((sound) => sound.player !== null);
+
+            let favsArr = JSON.parse(await AsyncStorage.getItem('favs'));
+            favsArr = favsArr || [];
+            let fav = {
+                [value]: activeSounds
+            }
+
+            favsArr.push(fav);
+            await AsyncStorage.setItem('favs', JSON.stringify(favsArr));
+            props.loadFavs();
+            props.setAddToFav(false);
+        } else {
+            Toast.show({
+                type: 'error',
+                text1: 'Name already exists',
+                text2: 'Please try again with another name',
+            })
+        }
     }
 
-    return (<View style={styles.centeredView}>
+    return (
         <Modal
             animationType="fade"
             transparent={true}
-            visible={soundContext.state.showAddToFavModal}
-            onRequestClose={() => { onChangeText(''); soundContext.setShowAddToFavModal(false) }}
+            visible={props.addToFav}
+            onRequestClose={() => { onChangeText(''); props.setAddToFav(false) }}
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <Text style={styles.title}>Name Of The Favourite</Text>
                     <TextInput
                         autoFocus={true}
-                        placeholder={'Bedtime, Study, Work etc..'}
+                        placeholder={'Bedtime, Nap, Work...'}
                         placeholderTextColor={'lightgray'}
                         style={styles.txtInput}
                         onChangeText={text => onChangeText(text)}
@@ -57,19 +75,17 @@ const AddToFav = (props) => {
 
 
                     {Platform.OS === 'ios' && <TouchableOpacity
-                        style={[styles.closeBtn, { marginTop: 30 }]}
+                        style={styles.closeBtn}
                         onPress={() => {
                             onChangeText('');
-                            soundContext.setShowAddToFavModal(!soundContext.state.showAddToFavModal)
+                            props.setAddToFav(false)
                         }}>
                         <Text style={styles.textStyle}>Close</Text>
                     </TouchableOpacity>}
                 </View>
-
-
             </View>
         </Modal>
-    </View>);
+    );
 }
 
 const styles = StyleSheet.create({
@@ -97,7 +113,7 @@ const styles = StyleSheet.create({
         maxHeight: '80%'
     },
     closeBtn: {
-        marginTop: 15,
+        marginTop: 30,
         backgroundColor: "transparent",
         borderRadius: 20,
         elevation: 0,
@@ -109,7 +125,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     txtInput: {
-        width: '60%',
+        width: '70%',
         height: 50,
         borderColor: 'white',
         borderBottomWidth: 1,
@@ -120,10 +136,10 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 20
+        marginBottom: 10
     },
     saveBtn: {
-        marginTop: 30,
+        marginTop: 15,
         borderWidth: 1,
         borderColor: 'white',
         borderRadius: 100,

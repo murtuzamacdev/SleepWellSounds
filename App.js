@@ -57,15 +57,13 @@ const App: () => React$Node = () => {
               <Stack.Screen
                 name="Favourites"
                 component={Favourites}
-                options={{
-                  headerShown: false
-                }} />
+              />
             </Stack.Navigator>
 
           </SoundContextProvider>
         </NavigationContainer>
       </SafeAreaView>
-
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </>
   );
 };
@@ -139,14 +137,13 @@ const AppWrapper = () => {
       {soundContext.state.isAnySoundPlaying !== undefined && <FloatingControls />}
       {soundContext.state.isAnySoundPlaying !== undefined && <SoundList />}
       <TimerOptions />
-      <AddToFav />
+
 
       <AdMobBanner
         adSize="smartBannerPortrait"
         adUnitID={Platform.OS === 'ios' ? admobBannerUnitId.IOS : admobBannerUnitId.ANDROID}
         didFailToReceiveAdWithError={onFailToRecieveAd}
       />
-      <Toast ref={(ref) => Toast.setRef(ref)} />
     </View>
   </>);
 }
