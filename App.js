@@ -118,7 +118,6 @@ const AppWrapper = () => {
   }
 
   return (<>
-    {/* <StatusBar barStyle="dark-content" /> */}
     <View style={{ flex: 1 }}>
       <FlatList
         data={soundContext.state.sounds}
@@ -134,10 +133,9 @@ const AppWrapper = () => {
           </View>
         </TouchableHighlight>}
       />
-      {soundContext.state.isAnySoundPlaying !== undefined && <FloatingControls />}
+      <FloatingControls />
       {soundContext.state.isAnySoundPlaying !== undefined && <SoundList />}
       <TimerOptions />
-
 
       <AdMobBanner
         adSize="smartBannerPortrait"

@@ -96,36 +96,37 @@ export class SoundContextProvider extends Component {
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = selectedSound.player;
+
+        // this.showInterstitialAd();
+
         this.setState({
             sounds: _sounds,
-            selectedSoundBadge: this.state.selectedSoundBadge + 1
-        })
-
-        // Show Interstitial Ad if conditions are met
-        let admobInterstitialCounter = await AsyncStorage.getItem('admobInterstitialCounter')
-        if (admobInterstitialCounter && parseInt(admobInterstitialCounter) >= 4) {
-            // this.togglePlay('PAUSE');
-            AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
-            AdMobInterstitial.addEventListener('adClosed', () => {
-                this.togglePlay('PLAY');
-            })
-
-            // set interstitial counter to 0
-            await AsyncStorage.setItem('admobInterstitialCounter', '0')
-        } else {
+            selectedSoundBadge: this.state.selectedSoundBadge + 1,
+            isAnySoundPlaying: true,
+            playState: MusicControl.STATE_PLAYING
+        }, () => {
             this.state.sounds.forEach((sound) => {
                 if (sound.player && sound.player.isPaused) {
                     sound.player.play()
                 }
             })
+        })
+    }
 
+    showInterstitialAd = async () => {
+        // Show Interstitial Ad if conditions are met
+        let admobInterstitialCounter = await AsyncStorage.getItem('admobInterstitialCounter')
+        if (admobInterstitialCounter && parseInt(admobInterstitialCounter) >= 4) {
+            AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+
+            // set interstitial counter to 0
+            await AsyncStorage.setItem('admobInterstitialCounter', '0')
+        } else {
             // update counter for interstitial app
             let val = admobInterstitialCounter || '0';
             val = parseInt(val) + 1;
             await AsyncStorage.setItem('admobInterstitialCounter', val.toString())
         }
-
-        this.setState({ isAnySoundPlaying: true, playState: MusicControl.STATE_PLAYING })
     }
 
     initMusicControlEvents = () => {
@@ -262,6 +263,47 @@ export class SoundContextProvider extends Component {
         this.setState({ timerCountdown: str })
     }
 
+    playFavs = (favSounds) => {
+        let _sounds = this.state.sounds;
+        _sounds.forEach((sound) => {
+            let soundFound = favSounds.findIndex((item) => item.id === sound.id)
+            if (soundFound !== -1) {
+                if(sound.player){
+                    sound.player.play();
+                    sound.player.volume = sound.volume;
+                }else {
+                    sound.player = new Player(`${sound.fileName}`, {
+                        autoDestroy: false,
+                        continuesToPlayInBackground: true
+                    });
+
+                    sound.player.prepare(() => {
+                        sound.player.volume = sound.volume;
+                        sound.player.play();
+            
+                        sound.interval = BackgroundTimer.setInterval(() => {
+                            sound.player && sound.player.seek(0)
+                        }, sound.player.duration);
+                    })
+                }
+            } else {
+                if(sound.player){
+                    sound.player.stop();
+                    sound.player = null;
+                    BackgroundTimer.clearInterval(sound.interval);
+                }
+                
+            }
+        })
+
+        this.setState({
+            sounds: _sounds,
+            isAnySoundPlaying: true,
+            playState: MusicControl.STATE_PLAYING,
+            selectedSoundBadge: favSounds.length,
+        })
+    }
+
     render() {
         return (
             <SoundContext.Provider
@@ -271,6 +313,7 @@ export class SoundContextProvider extends Component {
                     initializeSounds: this.initializeSounds,
                     removeSound: this.removeSound,
                     addSound: this.addSound,
+                    playFavs: this.playFavs,
                     togglePlay: this.togglePlay,
                     onVolumeChange: this.onVolumeChange,
                     checkSoundMaxLimit: this.checkSoundMaxLimit,

@@ -22,7 +22,7 @@ const Favourites = () => {
 
     const loadFavs = async () => {
         let temp = await AsyncStorage.getItem('favs')
-        let favs = JSON.parse(temp);
+        let favs = JSON.parse(temp) || [];
         setFavs(favs);
     }
 
@@ -35,6 +35,11 @@ const Favourites = () => {
         loadFavs();
     }
 
+    const playFavs = (item) => {
+        let sounds = item[Object.keys(item)[0]];
+        soundContext.playFavs(sounds);
+    }   
+
     return (<View style={styles.ctrn}>
         <View style={{ width: '100%' }}>
             <FlatList
@@ -42,7 +47,8 @@ const Favourites = () => {
                 keyExtractor={(item, index) => Object.keys(item)[0]}
                 initialNumToRender={soundContext.state.sounds.length}
                 renderItem={({ item }) => {
-                    return <View style={styles.listItem}>
+                    return <TouchableHighlight onPress={() => { playFavs(item) }} >
+                        <View style={styles.listItem}>
                         <Text style={styles.favName}>{Object.keys(item)[0]}</Text>
                         <TouchableHighlight
                             onPress={() => onRemove(item)}>
@@ -51,7 +57,9 @@ const Favourites = () => {
                                 source={require('../assets/images/icons/remove.png')}
                             />
                         </TouchableHighlight>
-                    </View>
+                        </View>
+                        
+                    </TouchableHighlight>
                 }}
             />
         </View>

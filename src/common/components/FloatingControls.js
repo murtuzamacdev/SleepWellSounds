@@ -36,7 +36,7 @@ const FloatingControls = (props) => {
     }
 
     return (<View style={styles.container}>
-        <TouchableHighlight
+        {soundContext.state.isAnySoundPlaying && <TouchableHighlight
             style={styles.buttons}
             onPress={() => togglePlay()}>
             {soundContext.state.playState !== MusicControl.STATE_PAUSED ? <Image
@@ -46,31 +46,34 @@ const FloatingControls = (props) => {
                     style={styles.icons}
                     source={require('../../assets/images/icons/play.png')}
                 />}
-        </TouchableHighlight>
-        <TouchableHighlight
+        </TouchableHighlight>}
+
+        {soundContext.state.isAnySoundPlaying && <TouchableHighlight
             style={styles.buttons}
             onPress={() => openTimerPopup()}>
             <View style={styles.timerCtnr}>
-                <Image
+                {soundContext.state.selectedTimer.value === 'NO_TIMER' && <Image
                     style={[styles.icons, styles.timerIcon]}
                     source={require('../../assets/images/icons/timer.png')}
-                />
+                />}
                 {soundContext.state.selectedTimer.value !== 'NO_TIMER' && <Text style={styles.timerText}>{soundContext.state.timerCountdown}</Text>}
             </View>
+        </TouchableHighlight>}
 
-        </TouchableHighlight>
         <TouchableHighlight
             style={styles.buttons}
             onPress={() => showSoundList()}>
             <View style={styles.timerCtnr}>
-                <Image
-                    s style={[styles.icons]}
-                    source={require('../../assets/images/icons/sounds.png')}
-                />
-                <Text style={styles.badge}>{soundContext.state.selectedSoundBadge}</Text>
+                <View style={styles.iconWithBadgeCtnr}>
+                    <Image
+                        style={[styles.icons]}
+                        source={require('../../assets/images/icons/sounds.png')}
+                    />
+                    {soundContext.state.selectedSoundBadge !== 0 && <Text style={styles.badge}>{soundContext.state.selectedSoundBadge}</Text>}
+                </View>
             </View>
-
         </TouchableHighlight>
+        
         <TouchableHighlight
             style={styles.buttons}
             onPress={() => navigation.navigate('Favourites')}>
@@ -80,7 +83,6 @@ const FloatingControls = (props) => {
                     source={require('../../assets/images/icons/favourite.png')}
                 />
             </View>
-
         </TouchableHighlight>
     </View>);
 }
@@ -113,9 +115,15 @@ const styles = StyleSheet.create({
     },
     timerCtnr: {
         flexDirection: 'row',
-        // borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    iconWithBadgeCtnr: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 50,
+        height: 50
     },
     timerIcon: {
         marginRight: 10
@@ -132,8 +140,8 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         marginLeft: 5,
         position: 'absolute',
-        top: 16,
-        right: Dimensions.get('window').width / 21
+        top: 25,
+        left: 30
     }
 });
 
