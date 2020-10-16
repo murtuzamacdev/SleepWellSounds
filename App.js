@@ -150,7 +150,7 @@ const windowW = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   controlCtnr: {
-    height: windowW / 3,
+    height: windowW / 3.5,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-evenly',

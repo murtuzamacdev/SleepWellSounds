@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
     View,
     Text,
@@ -11,8 +12,9 @@ import { SoundContext } from '../context/sound.context';
 import AddToFav from '../common/components/AddToFav'
 import AsyncStorage from '@react-native-community/async-storage';
 
-const Favourites = () => {
+const Favourites = (props) => {
     const soundContext = useContext(SoundContext);
+    const navigation = useNavigation();
     const [favs, setFavs] = React.useState([]);
     const [addToFav, setAddToFav] = React.useState(false);
 
@@ -38,7 +40,17 @@ const Favourites = () => {
     const playFavs = (item) => {
         let sounds = item[Object.keys(item)[0]];
         soundContext.playFavs(sounds);
-    }   
+        navigation.goBack();
+    }
+
+    const EmptyListMsg = () => {
+        return (<View style={styles.emptyTxtCtnr}>
+            <Text style={styles.emptyTxtTitle}>Nothing here yet...</Text>
+            {soundContext.state.isAnySoundPlaying && <Text style={styles.emptyTxtBody}>Tap <Text style={{fontWeight: "bold", fontStyle: 'italic'}}>ADD CURRENT SOUNDS TO FAVOURITES</Text> button below to add the currently playing sounds to Favourites</Text>}
+            {!soundContext.state.isAnySoundPlaying && <Text style={styles.emptyTxtBody}>Please select some sounds and then come here to add them to Favourites.</Text>}
+        </View>);
+    }
+
 
     return (<View style={styles.ctrn}>
         <View style={{ width: '100%' }}>
@@ -46,28 +58,30 @@ const Favourites = () => {
                 data={favs}
                 keyExtractor={(item, index) => Object.keys(item)[0]}
                 initialNumToRender={soundContext.state.sounds.length}
+                ListEmptyComponent={<EmptyListMsg />}
                 renderItem={({ item }) => {
                     return <TouchableHighlight onPress={() => { playFavs(item) }} >
                         <View style={styles.listItem}>
-                        <Text style={styles.favName}>{Object.keys(item)[0]}</Text>
-                        <TouchableHighlight
-                            onPress={() => onRemove(item)}>
-                            <Image
-                                style={styles.removeIcon}
-                                source={require('../assets/images/icons/remove.png')}
-                            />
-                        </TouchableHighlight>
+                            <Text style={styles.favName}>{Object.keys(item)[0]}</Text>
+                            <TouchableHighlight
+                                onPress={() => onRemove(item)}>
+                                <Image
+                                    style={styles.removeIcon}
+                                    source={require('../assets/images/icons/remove.png')}
+                                />
+                            </TouchableHighlight>
                         </View>
-                        
+
                     </TouchableHighlight>
                 }}
             />
         </View>
-        <TouchableHighlight
+
+        {soundContext.state.isAnySoundPlaying && <TouchableHighlight
             style={styles.addBtn}
             onPress={() => { setAddToFav(true) }}>
             <Text style={styles.txt}>ADD CURRENT SOUNDS TO FAVOURITES</Text>
-        </TouchableHighlight>
+        </TouchableHighlight>}
 
         <AddToFav addToFav={addToFav} setAddToFav={setAddToFav} loadFavs={loadFavs} favs={favs} />
     </View>);
@@ -118,6 +132,26 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'left',
         textAlignVertical: 'center'
+    },
+    emptyTxtCtnr: {
+        borderWidth: 1,
+        borderColor: 'lightgray',
+        borderRadius: 14,
+        margin: 50,
+        padding: 20,
+    },
+    emptyTxtTitle: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    emptyTxtBody: {
+        color: 'white',
+        fontSize: 18,
+        textAlign: 'center',
+        marginTop: 10,
+        lineHeight: 25
     }
 })
 

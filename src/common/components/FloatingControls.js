@@ -60,7 +60,7 @@ const FloatingControls = (props) => {
             </View>
         </TouchableHighlight>}
 
-        <TouchableHighlight
+        {soundContext.state.isAnySoundPlaying && <TouchableHighlight
             style={styles.buttons}
             onPress={() => showSoundList()}>
             <View style={styles.timerCtnr}>
@@ -72,8 +72,9 @@ const FloatingControls = (props) => {
                     {soundContext.state.selectedSoundBadge !== 0 && <Text style={styles.badge}>{soundContext.state.selectedSoundBadge}</Text>}
                 </View>
             </View>
-        </TouchableHighlight>
-        
+        </TouchableHighlight>}
+
+
         <TouchableHighlight
             style={styles.buttons}
             onPress={() => navigation.navigate('Favourites')}>
