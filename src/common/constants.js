@@ -163,23 +163,23 @@ export const timerOptions = [
 ]
 
 // Prod
-// export const admobBannerUnitId = {
-//     IOS: 'ca-app-pub-7653964150164042/7040498642',
-//     ANDROID: 'ca-app-pub-7653964150164042/7455431619'
-// }
-
-// export const admobInterstitialUnitId = {
-//     IOS: 'ca-app-pub-7653964150164042/6229612290',
-//     ANDROID: 'ca-app-pub-7653964150164042/1289478516'
-// }
-
-// Test
 export const admobBannerUnitId = {
-    IOS: 'ca-app-pub-3940256099942544/6300978111',
-    ANDROID: 'ca-app-pub-3940256099942544/6300978111'
+    IOS: 'ca-app-pub-7653964150164042/7040498642',
+    ANDROID: 'ca-app-pub-7653964150164042/7455431619'
 }
 
 export const admobInterstitialUnitId = {
-    IOS: 'ca-app-pub-3940256099942544/1033173712',
-    ANDROID: 'ca-app-pub-3940256099942544/1033173712'
+    IOS: 'ca-app-pub-7653964150164042/6229612290',
+    ANDROID: 'ca-app-pub-7653964150164042/1289478516'
 }
+
+// Test
+// export const admobBannerUnitId = {
+//     IOS: 'ca-app-pub-3940256099942544/6300978111',
+//     ANDROID: 'ca-app-pub-3940256099942544/6300978111'
+// }
+
+// export const admobInterstitialUnitId = {
+//     IOS: 'ca-app-pub-3940256099942544/1033173712',
+//     ANDROID: 'ca-app-pub-3940256099942544/1033173712'
+// }
