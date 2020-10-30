@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { AdMobInterstitial } from 'react-native-admob';
 import BackgroundTimer from 'react-native-background-timer';
 import Toast from 'react-native-toast-message';
-import Sound from 'react-native-audio-exoplayer-files';
+import Sound from 'react-native-exoplayer-audio-only';
 
 export const SoundContext = React.createContext();
 
