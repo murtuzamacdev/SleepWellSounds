@@ -12,6 +12,7 @@ import { SoundContext } from '../../context/sound.context';
 import AsyncStorage from '@react-native-community/async-storage';
 import Toast from 'react-native-toast-message';
 
+
 const AddToFav = (props) => {
     const soundContext = useContext(SoundContext);
     const [value, onChangeText] = React.useState('');
@@ -35,6 +36,7 @@ const AddToFav = (props) => {
             }
 
             favsArr.push(fav);
+            require("json-circular-stringify");
             await AsyncStorage.setItem('favs', JSON.stringify(favsArr));
             props.loadFavs();
             props.setAddToFav(false);

@@ -2,6 +2,7 @@ export var SOUNDS = {
     RAIN: {
         id: 'RAIN',
         fileName: 'rain.wav',
+        src: require('../assets/sounds/rain.wav'),
         name: 'Rain',
         volume: 0.5,
         icon: require('../assets/images/icons/rain.png'),
@@ -11,6 +12,7 @@ export var SOUNDS = {
     THUNDER: {
         id: 'THUNDER',
         fileName: 'thunder.wav',
+        src: require('../assets/sounds/thunder.wav'),
         name: 'Thunder',
         icon: require('../assets/images/icons/thunder.png'),
         volume: 0.5,
@@ -20,6 +22,7 @@ export var SOUNDS = {
     RAIN_WINDOW: {
         id: 'RAIN_WINDOW',
         fileName: 'umbrella.wav',
+        src: require('../assets/sounds/umbrella.wav'),
         name: 'Rain on windows',
         icon: require('../assets/images/icons/umbrella.png'),
         volume: 0.5,
@@ -29,6 +32,7 @@ export var SOUNDS = {
     BIRDS: {
         id: 'BIRDS',
         fileName: 'birds.wav',
+        src: require('../assets/sounds/birds.wav'),
         name: 'Birds',
         icon: require('../assets/images/icons/bird.png'),
         volume: 0.5,
@@ -38,6 +42,7 @@ export var SOUNDS = {
     WIND: {
         id: 'WIND',
         fileName: 'wind.wav',
+        src: require('../assets/sounds/wind.wav'),
         name: 'Wind',
         icon: require('../assets/images/icons/wind.png'),
         volume: 0.5,
@@ -47,6 +52,7 @@ export var SOUNDS = {
     CAR: {
         id: 'CAR',
         fileName: 'car.wav',
+        src: require('../assets/sounds/car.wav'),
         name: 'Car',
         icon: require('../assets/images/icons/car.png'),
         volume: 0.5,
@@ -56,6 +62,7 @@ export var SOUNDS = {
     STREAM: {
         id: 'STREAM',
         fileName: 'stream.wav',
+        src: require('../assets/sounds/stream.wav'),
         name: 'Stream',
         icon: require('../assets/images/icons/stream.png'),
         volume: 0.5,
@@ -65,6 +72,7 @@ export var SOUNDS = {
     OM: {
         id: 'OM',
         fileName: 'om.wav',
+        src: require('../assets/sounds/om.wav'),
         name: 'OM',
         icon: require('../assets/images/icons/mudra.png'),
         volume: 0.5,
@@ -74,6 +82,7 @@ export var SOUNDS = {
     FIRE: {
         id: 'FIRE',
         fileName: 'fire.wav',
+        src: require('../assets/sounds/fire.wav'),
         name: 'Fire',
         icon: require('../assets/images/icons/bonfire.png'),
         volume: 0.5,
@@ -83,6 +92,7 @@ export var SOUNDS = {
     WAVES: {
         id: 'WAVES',
         fileName: 'waves.wav',
+        src: require('../assets/sounds/waves.wav'),
         name: 'Waves',
         icon: require('../assets/images/icons/waves.png'),
         volume: 0.5,
@@ -92,6 +102,7 @@ export var SOUNDS = {
     BOWL: {
         id: 'BOWL',
         fileName: 'bowl.wav',
+        src: require('../assets/sounds/bowl.wav'),
         name: 'Bowl',
         icon: require('../assets/images/icons/bowl.png'),
         volume: 0.5,
@@ -101,6 +112,7 @@ export var SOUNDS = {
     CRICKET: {
         id: 'CRICKET',
         fileName: 'night.wav',
+        src: require('../assets/sounds/night.wav'),
         name: 'Cricket',
         icon: require('../assets/images/icons/night.png'),
         volume: 0.5,
@@ -110,6 +122,7 @@ export var SOUNDS = {
     WHITE_NOISE_1: {
         id: 'WHITE_NOISE_1',
         fileName: 'whitenoisea.wav',
+        src: require('../assets/sounds/whitenoisea.wav'),
         name: 'White Noise 1',
         icon: require('../assets/images/icons/whitenoisea.png'),
         volume: 0.5,
@@ -120,6 +133,7 @@ export var SOUNDS = {
     WHITE_NOISE_2: {
         id: 'STREAM1',
         fileName: 'whitenoiseb.wav',
+        src: require('../assets/sounds/whitenoiseb.wav'),
         name: 'White Noise 2',
         icon: require('../assets/images/icons/whitenoiseb.png'),
         volume: 0.5,
@@ -129,6 +143,7 @@ export var SOUNDS = {
     FAN: {
         id: 'FAN',
         fileName: 'fan.wav',
+        src: require('../assets/sounds/fan.wav'),
         name: 'Fan',
         icon: require('../assets/images/icons/fan.png'),
         volume: 0.5,
@@ -138,6 +153,7 @@ export var SOUNDS = {
     FLUTE: {
         id: 'FLUTE',
         fileName: 'flute.wav',
+        src: require('../assets/sounds/flute.wav'),
         name: 'Flute',
         icon: require('../assets/images/icons/flute.png'),
         volume: 0.5,

@@ -10,7 +10,8 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import { AdMobInterstitial } from 'react-native-admob';
 import BackgroundTimer from 'react-native-background-timer';
-import Toast from 'react-native-toast-message'
+import Toast from 'react-native-toast-message';
+import Sound from 'react-native-audio-exoplayer-files';
 
 export const SoundContext = React.createContext();
 
@@ -45,8 +46,8 @@ export class SoundContextProvider extends Component {
     }
 
     removeSound = (selectedSound) => {
-        selectedSound.player.stop();
-        BackgroundTimer.clearInterval(selectedSound.interval);
+        selectedSound.player.stopAsync();
+        // BackgroundTimer.clearInterval(selectedSound.interval);
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = null;
@@ -78,21 +79,35 @@ export class SoundContextProvider extends Component {
     }
 
     addSound = async (selectedSound) => {
-        selectedSound.player = new Player(`${selectedSound.fileName}`, {
-            autoDestroy: false,
-            continuesToPlayInBackground: true
-        });
-        selectedSound.player.looping = false;
 
-        selectedSound.player.prepare(() => {
-            selectedSound.player.play();
+        selectedSound.player = new Sound();
+        try {
+            await selectedSound.player.loadAsync(selectedSound.src);
+            selectedSound.player.setIsLoopingAsync(true)
+            await selectedSound.player.playAsync();
+            // Your sound is playing!
+        } catch (error) {
+            // An error occurred!
+        }
 
-            selectedSound.interval = BackgroundTimer.setInterval(() => {
-                selectedSound.player && selectedSound.player.seek(0)
-            }, selectedSound.player.duration);
-        })
+        // selectedSound.player = new Player(`${selectedSound.fileName}`, {
+        //     autoDestroy: false,
+        //     continuesToPlayInBackground: true
+        // });
+        // selectedSound.player.looping = false;
 
-        selectedSound.player.volume = selectedSound.volume;
+        // selectedSound.player.prepare(() => {
+        //     selectedSound.player.play();
+
+        //     selectedSound.interval = BackgroundTimer.setInterval(() => {
+        //         selectedSound.player && selectedSound.player.seek(0)
+        //     }, selectedSound.player.duration);
+        // })
+
+        selectedSound.player.setVolumeAsync(selectedSound.volume)
+        // selectedSound.player.volume = selectedSound.volume;
+
+
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === selectedSound.id);
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].player = selectedSound.player;
@@ -106,8 +121,8 @@ export class SoundContextProvider extends Component {
             playState: MusicControl.STATE_PLAYING
         }, () => {
             this.state.sounds.forEach((sound) => {
-                if (sound.player && sound.player.isPaused) {
-                    sound.player.play()
+                if (sound.player && !sound.player.isPlaying) {
+                    sound.player.playAsync();
                 }
             })
         })
@@ -147,7 +162,7 @@ export class SoundContextProvider extends Component {
 
     onVolumeChange = (soundPlayerId, volume) => {
         let selectedSoundIndex = this.state.sounds.findIndex((sound) => sound.id === soundPlayerId);
-        this.state.sounds[selectedSoundIndex].player.volume = volume;
+        this.state.sounds[selectedSoundIndex].player.setVolumeAsync(volume) ;
         let _sounds = this.state.sounds;
         _sounds[selectedSoundIndex].volume = volume;
         this.setState({
@@ -175,10 +190,10 @@ export class SoundContextProvider extends Component {
         let state, method;
         if (val === 'PLAY') {
             state = MusicControl.STATE_PLAYING;
-            method = 'play';
+            method = 'playAsync';
         } else {
             state = MusicControl.STATE_PAUSED;
-            method = 'pause';
+            method = 'pauseAsync';
         }
         MusicControl.updatePlayback({
             state: state
@@ -263,36 +278,49 @@ export class SoundContextProvider extends Component {
         this.setState({ timerCountdown: str })
     }
 
-    playFavs = (favSounds) => {
+    playFavs =  (favSounds) => {
         let _sounds = this.state.sounds;
-        _sounds.forEach((sound) => {
+        _sounds.forEach(async (sound) => {
             let soundFound = favSounds.findIndex((item) => item.id === sound.id)
             if (soundFound !== -1) {
-                if(sound.player){
-                    sound.player.play();
-                    sound.player.volume = sound.volume;
-                }else {
-                    sound.player = new Player(`${sound.fileName}`, {
-                        autoDestroy: false,
-                        continuesToPlayInBackground: true
-                    });
+                if (sound.player) {
+                    sound.player.playAsync();
+                    sound.player.setVolumeAsync(sound.volume)
+                    // sound.player.volume = sound.volume;
+                } else {
 
-                    sound.player.prepare(() => {
-                        sound.player.volume = sound.volume;
-                        sound.player.play();
-            
-                        sound.interval = BackgroundTimer.setInterval(() => {
-                            sound.player && sound.player.seek(0)
-                        }, sound.player.duration);
-                    })
+                    sound.player = new Sound();
+                    try {
+                        await sound.player.loadAsync(sound.src);
+                        sound.player.setIsLoopingAsync(true)
+                        sound.player.setVolumeAsync(sound.volume)
+                        await sound.player.playAsync();
+                        // Your sound is playing!
+                    } catch (error) {
+                        // An error occurred!
+                    }
+
+                    // sound.player = new Player(`${sound.fileName}`, {
+                    //     autoDestroy: false,
+                    //     continuesToPlayInBackground: true
+                    // });
+
+                    // sound.player.prepare(() => {
+                    //     sound.player.volume = sound.volume;
+                    //     sound.player.play();
+
+                    //     sound.interval = BackgroundTimer.setInterval(() => {
+                    //         sound.player && sound.player.seek(0)
+                    //     }, sound.player.duration);
+                    // })
                 }
             } else {
-                if(sound.player){
-                    sound.player.stop();
+                if (sound.player) {
+                    sound.player.stopAsync();
                     sound.player = null;
-                    BackgroundTimer.clearInterval(sound.interval);
+                    // BackgroundTimer.clearInterval(sound.interval);
                 }
-                
+
             }
         })
 
