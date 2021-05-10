@@ -5,7 +5,7 @@ export var SOUNDS = {
         src: require('../assets/sounds/rain.wav'),
         name: 'Rain',
         volume: 0.5,
-        icon: require('../assets/images/icons/rain.png'),
+        soundImage: require('../assets/images/soundImages/rain.jpg'),
         backgroundColor: '#45963B',
         duration: 5387
     },
@@ -14,7 +14,7 @@ export var SOUNDS = {
         fileName: 'thunder.wav',
         src: require('../assets/sounds/thunder.wav'),
         name: 'Thunder',
-        icon: require('../assets/images/icons/thunder.png'),
+        soundImage: require('../assets/images/soundImages/storm.jpg'),
         volume: 0.5,
         backgroundColor: '#74BB4C',
         duration: 27272
@@ -23,8 +23,8 @@ export var SOUNDS = {
         id: 'RAIN_WINDOW',
         fileName: 'umbrella.wav',
         src: require('../assets/sounds/umbrella.wav'),
-        name: 'Rain on windows',
-        icon: require('../assets/images/icons/umbrella.png'),
+        name: 'Umbrella',
+        soundImage: require('../assets/images/soundImages/umbrella.jpg'),
         volume: 0.5,
         backgroundColor: '#98CB80',
         duration: 5077
@@ -34,7 +34,7 @@ export var SOUNDS = {
         fileName: 'birds.wav',
         src: require('../assets/sounds/birds.wav'),
         name: 'Birds',
-        icon: require('../assets/images/icons/bird.png'),
+        soundImage: require('../assets/images/soundImages/birds.jpg'),
         volume: 0.5,
         backgroundColor: '#77B982',
         duration: 6161
@@ -44,7 +44,7 @@ export var SOUNDS = {
         fileName: 'wind.wav',
         src: require('../assets/sounds/wind.wav'),
         name: 'Wind',
-        icon: require('../assets/images/icons/wind.png'),
+        soundImage: require('../assets/images/soundImages/wind.jpg'),
         volume: 0.5,
         backgroundColor: '#3C925B',
         duration: 9765
@@ -54,7 +54,7 @@ export var SOUNDS = {
         fileName: 'car.wav',
         src: require('../assets/sounds/car.wav'),
         name: 'Car',
-        icon: require('../assets/images/icons/car.png'),
+        soundImage: require('../assets/images/soundImages/car.jpg'),
         volume: 0.5,
         backgroundColor: '#9CC7A5',
         duration: 5091
@@ -64,7 +64,7 @@ export var SOUNDS = {
         fileName: 'stream.wav',
         src: require('../assets/sounds/stream.wav'),
         name: 'Stream',
-        icon: require('../assets/images/icons/stream.png'),
+        soundImage: require('../assets/images/soundImages/stream.jpg'),
         volume: 0.5,
         backgroundColor: '#44AAAA',
         duration: 5011
@@ -73,8 +73,8 @@ export var SOUNDS = {
         id: 'OM',
         fileName: 'om.wav',
         src: require('../assets/sounds/om.wav'),
-        name: 'OM',
-        icon: require('../assets/images/icons/mudra.png'),
+        name: 'Om',
+        soundImage: require('../assets/images/soundImages/om.jpg'),
         volume: 0.5,
         backgroundColor: '#126DAB',
         duration: 8380
@@ -84,7 +84,7 @@ export var SOUNDS = {
         fileName: 'fire.wav',
         src: require('../assets/sounds/fire.wav'),
         name: 'Fire',
-        icon: require('../assets/images/icons/bonfire.png'),
+        soundImage: require('../assets/images/soundImages/fire.jpg'),
         volume: 0.5,
         backgroundColor: '#0D3D84',
         duration: 5036
@@ -94,7 +94,7 @@ export var SOUNDS = {
         fileName: 'waves.wav',
         src: require('../assets/sounds/waves.wav'),
         name: 'Waves',
-        icon: require('../assets/images/icons/waves.png'),
+        soundImage: require('../assets/images/soundImages/waves.jpg'),
         volume: 0.5,
         backgroundColor: '#1C2239',
         duration: 6241
@@ -104,7 +104,7 @@ export var SOUNDS = {
         fileName: 'bowl.wav',
         src: require('../assets/sounds/bowl.wav'),
         name: 'Bowl',
-        icon: require('../assets/images/icons/bowl.png'),
+        soundImage: require('../assets/images/soundImages/bowl.jpg'),
         volume: 0.5,
         backgroundColor: '#545488',
         duration: 6000
@@ -113,8 +113,8 @@ export var SOUNDS = {
         id: 'CRICKET',
         fileName: 'night.wav',
         src: require('../assets/sounds/night.wav'),
-        name: 'Cricket',
-        icon: require('../assets/images/icons/night.png'),
+        name: 'Night',
+        soundImage: require('../assets/images/soundImages/night.jpg'),
         volume: 0.5,
         backgroundColor: '#3A3387',
         duration: 4619
@@ -124,7 +124,7 @@ export var SOUNDS = {
         fileName: 'whitenoisea.wav',
         src: require('../assets/sounds/whitenoisea.wav'),
         name: 'White Noise 1',
-        icon: require('../assets/images/icons/whitenoisea.png'),
+        soundImage: require('../assets/images/soundImages/whitenoisea.jpg'),
         volume: 0.5,
         backgroundColor: '#68407c',
         duration: 4922
@@ -135,7 +135,7 @@ export var SOUNDS = {
         fileName: 'whitenoiseb.wav',
         src: require('../assets/sounds/whitenoiseb.wav'),
         name: 'White Noise 2',
-        icon: require('../assets/images/icons/whitenoiseb.png'),
+        soundImage: require('../assets/images/soundImages/whitenoiseb.jpg'),
         volume: 0.5,
         backgroundColor: '#251743',
         duration: 4789
@@ -145,7 +145,7 @@ export var SOUNDS = {
         fileName: 'fan.wav',
         src: require('../assets/sounds/fan.wav'),
         name: 'Fan',
-        icon: require('../assets/images/icons/fan.png'),
+        soundImage: require('../assets/images/soundImages/fan.jpg'),
         volume: 0.5,
         backgroundColor: '#311b46',
         duration: 5004
@@ -155,7 +155,7 @@ export var SOUNDS = {
         fileName: 'flute.wav',
         src: require('../assets/sounds/flute.wav'),
         name: 'Flute',
-        icon: require('../assets/images/icons/flute.png'),
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
         volume: 0.5,
         backgroundColor: '#190d25',
         duration: 40513

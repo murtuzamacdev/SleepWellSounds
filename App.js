@@ -16,13 +16,14 @@ import {
   StatusBar,
   TouchableHighlight,
   Image,
+  ImageBackground,
   FlatList,
   Platform,
   Dimensions
 } from 'react-native';
 import { SOUNDS, admobBannerUnitId } from './src/common/constants';
 import MusicControl from 'react-native-music-control';
-import { AdMobBanner } from 'react-native-admob';
+// import { AdMobBanner } from 'react-native-admob';
 import { SoundContext, SoundContextProvider } from './src/context/sound.context';
 import SoundList from './src/common/components/SoundList';
 import VolumeSlider from './src/common/components/VolumeSlider';
@@ -123,13 +124,18 @@ const AppWrapper = () => {
         data={soundContext.state.sounds}
         numColumns={2}
         keyExtractor={(item, index) => item.id}
-        renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={[styles.controlCtnr, { backgroundColor: item.backgroundColor }]} >
+        renderItem={({ item }) => <TouchableHighlight onPress={() => { onTap(item) }} key={item.id} style={[styles.controlCtnr]} >
           <View style={styles.controlToggler}>
             <Image
               style={styles.soundIcon}
-              source={item.icon}
+              source={item.soundImage}
             />
+            <View style={{flexDirection: 'row',  justifyContent: 'center', }}>
+            <Text style={styles.controlText}>{item.name}</Text>
+            </View>
+           
             {item.player && <VolumeSlider item={item} />}
+            
           </View>
         </TouchableHighlight>}
       />
@@ -137,11 +143,11 @@ const AppWrapper = () => {
       {soundContext.state.isAnySoundPlaying !== undefined && <SoundList />}
       <TimerOptions />
 
-      <AdMobBanner
+      {/* <AdMobBanner
         adSize="smartBannerPortrait"
         adUnitID={Platform.OS === 'ios' ? admobBannerUnitId.IOS : admobBannerUnitId.ANDROID}
         didFailToReceiveAdWithError={onFailToRecieveAd}
-      />
+      /> */}
     </View>
   </>);
 }
@@ -150,7 +156,7 @@ const windowW = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   controlCtnr: {
-    height: windowW / 3.5,
+    height: windowW / 3,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-evenly',
@@ -165,17 +171,35 @@ const styles = StyleSheet.create({
   controlText: {
     color: 'white',
     fontSize: 20,
-    textAlign: 'center'
+    alignSelf: 'flex-start',
+    fontFamily: 'Palatino-BoldItalic',
+    fontWeight: 'bold',
+    zIndex:1000,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderRadius: 50
   },
   controlVolumeSlider:
   {
     width: 100,
-    height: 40
+    height: 40,
+    
   },
   soundIcon: {
-    height: windowW / 6,
-    resizeMode: 'contain',
-    alignSelf: 'center'
+    // height: windowW / 6,
+    height: '100%',
+    width: '100%',
+    // resizeMode: 'contain',
+    // alignSelf: 'center'
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+   
   }
 });
 

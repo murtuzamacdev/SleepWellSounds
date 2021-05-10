@@ -34,9 +34,10 @@ const SoundList = (props) => {
                                 return <View style={styles.listItem} >
                                     <Image
                                         style={styles.soundIcon}
-                                        source={item.icon}
+                                        source={item.soundImage}
+
                                     />
-                                    {item.player && <VolumeSlider item={item} />}
+                                    {item.player && <View style={{width: '60%'}}><VolumeSlider item={item} /></View> }
                                     <TouchableHighlight
                                         onPress={() => soundContext.removeSound(item)}>
                                         <Image
@@ -108,13 +109,14 @@ const styles = StyleSheet.create({
         justifyContent: "space-evenly",
         alignItems: "center",
         width: '100%',
-        marginBottom: 30
+        marginBottom: 15
     },
     soundIcon: {
         borderWidth: 0,
-        width: 40,
-        height: 40,
-        resizeMode: 'contain'
+        width: 50,
+        height: 50,
+        borderRadius: 15,
+        resizeMode: 'cover'
     },
     removeIcon: {
         width: 25,

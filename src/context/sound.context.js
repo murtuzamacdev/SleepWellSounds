@@ -8,7 +8,7 @@ import {
     MediaStates
 } from '@react-native-community/audio-toolkit';
 import AsyncStorage from '@react-native-community/async-storage';
-import { AdMobInterstitial } from 'react-native-admob';
+// import { AdMobInterstitial } from 'react-native-admob';
 import BackgroundTimer from 'react-native-background-timer';
 import Toast from 'react-native-toast-message';
 import Sound from 'react-native-exoplayer-audio-only';
@@ -42,7 +42,7 @@ export class SoundContextProvider extends Component {
             sounds: _sounds
         })
 
-        AdMobInterstitial.setAdUnitID(Platform.OS === 'ios' ? admobInterstitialUnitId.IOS : admobInterstitialUnitId.ANDROID);
+        // AdMobInterstitial.setAdUnitID(Platform.OS === 'ios' ? admobInterstitialUnitId.IOS : admobInterstitialUnitId.ANDROID);
     }
 
     removeSound = (selectedSound) => {
@@ -132,7 +132,7 @@ export class SoundContextProvider extends Component {
         // Show Interstitial Ad if conditions are met
         let admobInterstitialCounter = await AsyncStorage.getItem('admobInterstitialCounter')
         if (admobInterstitialCounter && parseInt(admobInterstitialCounter) >= 4) {
-            AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+            // AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
 
             // set interstitial counter to 0
             await AsyncStorage.setItem('admobInterstitialCounter', '0')

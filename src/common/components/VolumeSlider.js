@@ -19,8 +19,8 @@ const VolumeSlider = (props) => {
         value={props.item.volume}
         minimumValue={0}
         maximumValue={1}
-        minimumTrackTintColor="lightgrey"
-        maximumTrackTintColor="#000000"
+        minimumTrackTintColor="white"
+        maximumTrackTintColor="white"
         thumbTintColor="white"
         onValueChange={(volume) => { soundContext.onVolumeChange(props.item.id, volume) }}
     />);
@@ -29,9 +29,11 @@ const VolumeSlider = (props) => {
 const styles = StyleSheet.create({
     controlVolumeSlider:
     {
-        width: '60%',
-        height: 40,
-        alignSelf: 'center'
+        width: '100%',
+        // height: 40,
+        borderWidth: 1,
+        alignSelf: 'center',
+        zIndex:1000 
     }
 });
 
