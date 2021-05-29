@@ -133,8 +133,8 @@ const AppWrapper = () => {
             <View style={{flexDirection: 'row',  justifyContent: 'center', }}>
             <Text style={styles.controlText}>{item.name}</Text>
             </View>
-           
-            {item.player && <VolumeSlider item={item} />}
+            <View style={styles.overlay} />
+            {item.player && <View style={styles.sliderCtnr}><VolumeSlider item={item} /></View>}
             
           </View>
         </TouchableHighlight>}
@@ -155,6 +155,12 @@ const AppWrapper = () => {
 const windowW = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
+  sliderCtnr: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 5
+  },
   controlCtnr: {
     height: windowW / 3,
     flex: 1,
@@ -170,9 +176,9 @@ const styles = StyleSheet.create({
   },
   controlText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 17,
     alignSelf: 'flex-start',
-    fontFamily: 'Palatino-BoldItalic',
+    fontFamily: 'sans-serif-thin',
     fontWeight: 'bold',
     zIndex:1000,
     backgroundColor: 'rgba(0,0,0,0.5)',
@@ -180,7 +186,7 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     paddingTop: 5,
     paddingBottom: 5,
-    borderRadius: 50
+    borderRadius: 5
   },
   controlVolumeSlider:
   {
@@ -200,6 +206,19 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
    
+  },
+  overlay: {
+    // height: windowW / 6,
+    height: '100%',
+    width: '100%',
+    // resizeMode: 'contain',
+    // alignSelf: 'center'
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.3)',
   }
 });
 
