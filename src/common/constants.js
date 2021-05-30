@@ -152,8 +152,99 @@ export var SOUNDS = {
     },
     FLUTE: {
         id: 'FLUTE',
-        fileName: 'flute.wav',
-        src: require('../assets/sounds/flute.wav'),
+        fileName: 'quite_time.wav',
+        src: require('../assets/sounds/quite_time.wav'),
+        name: 'Flute',
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
+        volume: 0.5,
+        backgroundColor: '#190d25',
+        duration: 40513
+    },
+    TABLA1: {
+        id: 'TABLA1',
+        fileName: 'smooth_lofi_guitar.wav',
+        src: require('../assets/sounds/smooth_lofi_guitar.wav'),
+        name: 'Flute',
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
+        volume: 0.5,
+        backgroundColor: '#190d25',
+        duration: 40513
+    },
+    AMBIENCE1: {
+        id: 'AMBIENCE1',
+        fileName: 'ambience2.wav',
+        src: require('../assets/sounds/ambience2.wav'),
+        name: 'Flute',
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
+        volume: 0.5,
+        backgroundColor: '#190d25',
+        duration: 40513
+    },
+    GUITAR1: {
+        id: 'GUITAR1',
+        fileName: 'classic_guitar.wav',
+        src: require('../assets/sounds/classic_guitar.wav'),
+        name: 'Flute',
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
+        volume: 0.5,
+        backgroundColor: '#190d25',
+        duration: 40513
+    },
+
+    ACC_GUITAR: {
+        id: 'ACC_GUITAR',
+        fileName: 'accoustic_guitar.wav',
+        src: require('../assets/sounds/accoustic_guitar.wav'),
+        name: 'Flute',
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
+        volume: 0.5,
+        backgroundColor: '#190d25',
+        duration: 40513
+    },
+    AMB2: {
+        id: 'AMB2',
+        fileName: 'ambience1.wav',
+        src: require('../assets/sounds/ambience1.wav'),
+        name: 'Flute',
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
+        volume: 0.5,
+        backgroundColor: '#190d25',
+        duration: 40513
+    },
+    FUNK: {
+        id: 'FUNK',
+        fileName: 'funk_guitar.wav',
+        src: require('../assets/sounds/funk_guitar.wav'),
+        name: 'Flute',
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
+        volume: 0.5,
+        backgroundColor: '#190d25',
+        duration: 40513
+    },
+    ROMANTIC_P: {
+        id: 'ROMANTIC_P',
+        fileName: 'romantic_paino.wav',
+        src: require('../assets/sounds/romantic_paino.wav'),
+        name: 'Flute',
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
+        volume: 0.5,
+        backgroundColor: '#190d25',
+        duration: 40513
+    },
+    SLOW_G: {
+        id: 'SLOW_G',
+        fileName: 'slow_guitar.wav',
+        src: require('../assets/sounds/slow_guitar.wav'),
+        name: 'Flute',
+        soundImage: require('../assets/images/soundImages/flute.jpg'),
+        volume: 0.5,
+        backgroundColor: '#190d25',
+        duration: 40513
+    },
+    slow_paino: {
+        id: 'slow_paino',
+        fileName: 'slow_paino.wav',
+        src: require('../assets/sounds/slow_paino.wav'),
         name: 'Flute',
         soundImage: require('../assets/images/soundImages/flute.jpg'),
         volume: 0.5,
